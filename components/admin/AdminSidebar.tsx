@@ -17,7 +17,8 @@ import {
   TrendingUp,
   Settings,
   Puzzle,
-  Terminal
+  Terminal,
+  LogOut
 } from 'lucide-react';
 import { getLocaleFromPathname, getLocalePath, translateCommon } from '@/lib/i18n';
 
@@ -105,6 +106,20 @@ export default function AdminSidebar() {
             })}
           </div>
         ))}
+      </div>
+
+      <div className="p-4 border-t border-zinc-800">
+        <button 
+          onClick={() => {
+            if(confirm('Are you sure you want to log out?')) {
+              window.location.href = '/admin/login';
+            }
+          }}
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200"
+        >
+          <LogOut className="w-4 h-4" />
+          <span className="font-medium text-sm">Log Out</span>
+        </button>
       </div>
     </aside>
   );

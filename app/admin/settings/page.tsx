@@ -2,7 +2,6 @@
 
 import React, { useState, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import SettingsLayout from '@/plugins/lms/components/settings/SettingsLayout';
 import GeneralSettings from '@/plugins/lms/components/settings/GeneralSettings';
 import LearningSettings from '@/plugins/lms/components/settings/LearningSettings';
 import EmailSettings from '@/plugins/lms/components/settings/EmailSettings';
@@ -90,28 +89,26 @@ function SettingsContent() {
   };
 
   return (
-    <SettingsLayout>
-      <div className="max-w-5xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6 border-b border-zinc-100 pb-8">
-          <div>
-            <h1 className="text-3xl font-extrabold text-zinc-900 tracking-tight">Admin Settings</h1>
-            <p className="text-sm text-zinc-500 mt-1 font-medium">Configure your entire LMS platform from one place.</p>
-          </div>
-          <SettingsSearch value={searchQuery} onChange={setSearchQuery} />
+    <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6 border-b border-zinc-100 pb-8">
+        <div>
+          <h1 className="text-3xl font-extrabold text-zinc-900 tracking-tight">Admin Settings</h1>
+          <p className="text-sm text-zinc-500 mt-1 font-medium">Configure your entire LMS platform from one place.</p>
         </div>
-
-        <div className="relative animate-in fade-in slide-in-from-bottom-2 duration-500">
-          {renderTabContent()}
-        </div>
-
-        <StickySaveBar 
-          isDirty={isGlobalDirty} 
-          isSaving={isSaving} 
-          onSave={handleSave} 
-          onReset={handleDiscard}
-        />
+        <SettingsSearch value={searchQuery} onChange={setSearchQuery} />
       </div>
-    </SettingsLayout>
+
+      <div className="relative animate-in fade-in slide-in-from-bottom-2 duration-500">
+        {renderTabContent()}
+      </div>
+
+      <StickySaveBar 
+        isDirty={isGlobalDirty} 
+        isSaving={isSaving} 
+        onSave={handleSave} 
+        onReset={handleDiscard}
+      />
+    </div>
   );
 }
 

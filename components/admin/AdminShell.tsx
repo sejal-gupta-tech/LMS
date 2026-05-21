@@ -12,6 +12,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const locale = getLocaleFromPathname(pathname);
   const localizedLoginPath = getLocalePath(locale, '/admin/login');
   const isLoginPage = pathname === '/admin/login' || pathname === localizedLoginPath;
+  const isSettingsPage = pathname.includes('/admin/settings');
 
   return (
     <AdminLocaleProvider>
@@ -22,7 +23,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           <AdminSidebar />
           <div className="flex-1 flex flex-col overflow-hidden">
             <AdminTopbar />
-            <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-zinc-50 border-t border-zinc-200 shadow-[inset_0_4px_6px_-4px_rgba(0,0,0,0.05)]">
+            <main className={`flex-1 overflow-y-auto bg-zinc-50 border-t border-zinc-200 shadow-[inset_0_4px_6px_-4px_rgba(0,0,0,0.05)] ${
+              isSettingsPage ? 'p-0' : 'p-4 md:p-8'
+            }`}>
               {children}
             </main>
           </div>

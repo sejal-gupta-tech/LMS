@@ -28,13 +28,32 @@ export async function dbConnect() {
   }
 
   if (!cached.promise) {
+    const opts = {
+      dbName: MONGODB_DB_NAME,
+      bufferCommands: false,
+    };
+
+    console.log('[DB] Connecting to MongoDB...');
     cached.promise = mongoose
-      .connect(MONGODB_URI, {
-        dbName: MONGODB_DB_NAME,
+      .connect(MONGODB_URI, opts)
+      .then((mongooseInstance) => {
+        console.log('[DB] Connected successfully to', MONGODB_DB_NAME);
+        return mongooseInstance;
       })
-      .then((mongooseInstance) => mongooseInstance);
+      .catch((err) => {
+        console.error('[DB] Connection error:', err);
+        cached.promise = null; // Reset promise so we can retry
+        throw err;
+      });
   }
 
-  cached.conn = await cached.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    console.error('[DB] Failed to await connection promise:', e);
+    throw e;
+  }
+  
   return cached.conn;
 }
+

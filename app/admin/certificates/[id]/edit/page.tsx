@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, HelpCircle } from 'lucide-react';
+import { ModernCertificate } from '@/components/certificates/ModernCertificate';
+import { Tooltip } from '@/components/ui/Tooltip';
 
 export default function EditCertificatePage() {
   const params = useParams();
@@ -17,7 +19,8 @@ export default function EditCertificatePage() {
     name: '',
     description: '',
     templateUrl: '',
-    courseId: ''
+    courseId: '',
+    signatureUrl: ''
   });
 
   const activeLocale = 'en';
@@ -55,7 +58,8 @@ export default function EditCertificatePage() {
           name: certData.data?.name || '',
           description: certData.data?.description || '',
           templateUrl: certData.data?.templateUrl || '',
-          courseId: certData.data?.courseId || ''
+          courseId: certData.data?.courseId || '',
+          signatureUrl: certData.data?.signatureUrl || ''
         });
       } catch (error: any) {
         toast.error(error.message || 'Failed to load certificate');
@@ -115,63 +119,94 @@ export default function EditCertificatePage() {
         </Link>
       </div>
 
-      <div className="bg-white border border-zinc-200 rounded-md p-6">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="text-sm font-medium text-zinc-700">Certificate Name</label>
-            <input
-              value={formData.name}
-              onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-              className="mt-1 w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium text-zinc-700">Course</label>
-            <select
-              value={formData.courseId}
-              onChange={(e) => setFormData((prev) => ({ ...prev, courseId: e.target.value }))}
-              className="mt-1 w-full border border-zinc-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white border border-zinc-200 rounded-md p-6 shadow-sm">
+          <h2 className="text-lg font-medium mb-4 pb-2 border-b">Certificate Details</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="text-sm font-medium text-zinc-700">Certificate Name (Recipient Display)</label>
+                <Tooltip content="The name that will appear on the certificate. Usually the student's full name." />
+              </div>
+              <input
+                value={formData.name}
+                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
+                placeholder="e.g. John Doe"
+              />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="text-sm font-medium text-zinc-700">Course</label>
+                <Tooltip content="The course this certificate is being awarded for." />
+              </div>
+              <select
+                value={formData.courseId}
+                onChange={(e) => setFormData((prev) => ({ ...prev, courseId: e.target.value }))}
+                className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
+              >
+                <option value="">Select a course</option>
+                {courses.map((course) => (
+                  <option key={course._id} value={course._id}>
+                    {getDisplayTitle(course.title)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="text-sm font-medium text-zinc-700">Custom Description</label>
+                <Tooltip content="A short message or description of the award. Leave empty for default text." />
+              </div>
+              <textarea
+                value={formData.description}
+                onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
+                rows={4}
+              />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="text-sm font-medium text-zinc-700">Signature URL (Optional)</label>
+                <Tooltip content="Upload your signature to a hosting service and paste the direct image link here." />
+              </div>
+              <input
+                value={formData.signatureUrl || ''}
+                onChange={(e) => setFormData((prev) => ({ ...prev, signatureUrl: e.target.value }))}
+                className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
+                placeholder="https://example.com/signature.png"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={saving}
+              className="bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium px-4 py-2 rounded-md flex items-center gap-2 transition-colors"
             >
-              <option value="">Select a course</option>
-              {courses.map((course) => (
-                <option key={course._id} value={course._id}>
-                  {getDisplayTitle(course.title)}
-                </option>
-              ))}
-              {courses.length === 0 && !loading && <option value="" disabled>No courses found. Please create a course first.</option>}
-            </select>
-            {courses.length === 0 && !loading && (
-              <p className="mt-1 text-xs text-amber-600 italic">
-                Tip: You must have at least one course to assign a certificate.
-              </p>
-            )}
+              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+              Update Certificate
+            </button>
+          </form>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-lg font-medium">Live Preview (Modern Template)</h2>
+          <div className="bg-zinc-100 p-4 sm:p-8 rounded-xl border-2 border-dashed border-zinc-300 overflow-hidden">
+             <div className="flex items-center justify-center min-h-[480px]">
+                <div className="w-[850px] shadow-2xl scale-[0.4] sm:scale-[0.45] md:scale-[0.55] lg:scale-[0.6] xl:scale-[0.65] origin-center">
+                   <ModernCertificate 
+                      userName={formData.name || 'Recipient Name'}
+                      courseTitle={courses.find(c => c._id === formData.courseId) ? getDisplayTitle(courses.find(c => c._id === formData.courseId).title) : 'Course Title'}
+                      issuedAt={new Date().toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, ' / ')}
+                      description={formData.description || `This certificate is awarded in recognition of successfully completing the requirements.`}
+                      signatureUrl={formData.signatureUrl}
+                   />
+                </div>
+             </div>
           </div>
-          <div>
-            <label className="text-sm font-medium text-zinc-700">Description</label>
-            <textarea
-              value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              className="mt-1 w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
-              rows={3}
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium text-zinc-700">Template URL (optional)</label>
-            <input
-              value={formData.templateUrl}
-              onChange={(e) => setFormData((prev) => ({ ...prev, templateUrl: e.target.value }))}
-              className="mt-1 w-full border border-zinc-300 rounded-md px-3 py-2 text-sm"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={saving}
-            className="bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium px-4 py-2 rounded-md flex items-center gap-2"
-          >
-            {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-            Update Certificate
-          </button>
-        </form>
+          <p className="text-xs text-zinc-500 italic text-center">
+             Previewing: {formData.name}
+          </p>
+        </div>
       </div>
     </div>
   );

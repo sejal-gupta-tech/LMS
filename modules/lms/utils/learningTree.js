@@ -4,7 +4,7 @@ import Topic from '@/modules/lms/models/Topic';
 import Quiz from '@/modules/lms/models/Quiz';
 import Question from '@/modules/lms/models/Question';
 import Answer from '@/modules/lms/models/Answer';
-import { localizeCourseDocument, localizeLessonDocument, localizeQuestionDocument, localizeQuizDocument } from '@/modules/lms/utils/courseLocalization';
+import { localizeCourseDocument, localizeLessonDocument, localizeQuestionDocument, localizeQuizDocument, localizeTopicDocument } from '@/modules/lms/utils/courseLocalization';
 import { resolveDocumentBySlugOrId } from '@/modules/lms/utils/slug';
 
 const REGISTERED_TREE_MODELS = [Question, Answer];
@@ -65,19 +65,21 @@ function normalizeQuizTree(quiz, locale) {
 }
 
 function normalizeTopicTree(topic, locale) {
+  const localized = localizeTopicDocument(topic, locale);
   const plain = toPlain(topic);
   const resolvedQuiz = plain?.quizId || (Array.isArray(plain?.quizzes) ? plain.quizzes[0] : null);
 
   return {
     ...plain,
-    description: plain?.description || '',
+    ...localized,
+    description: localized.description || '',
     videoUrl: plain?.videoUrl || '',
     duration: plain?.duration || 0,
     keyPoints: Array.isArray(plain?.keyPoints) ? plain.keyPoints : [],
     notes: Array.isArray(plain?.notes) ? plain.notes : [],
     resources: Array.isArray(plain?.resources) ? plain.resources : [],
     codeExample: plain?.codeExample || '',
-    summary: plain?.summary || '',
+    summary: localized.summary || '',
     quizId: resolvedQuiz ? normalizeQuizTree(resolvedQuiz, locale) : null,
     content: plain?.content ?? '',
     contentHtml: plain?.contentHtml || plain?.content || '',

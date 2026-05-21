@@ -14,11 +14,14 @@ import {
   BookOpen, 
   Award, 
   ChevronRight, 
+  ChevronDown,
+  ChevronUp,
   User, 
   Calendar,
   Layers,
   CheckCircle,
-  Loader2
+  Loader2,
+  FileText
 } from 'lucide-react';
 
 interface Course {
@@ -33,6 +36,13 @@ interface Course {
   lessons?: Lesson[];
 }
 
+interface Topic {
+  _id: string;
+  title: string;
+  slug: string;
+  order: number;
+}
+
 interface Lesson {
   _id: string;
   slug: string;
@@ -41,6 +51,7 @@ interface Lesson {
   order: number;
   unlockType: string;
   unlockAfterDays?: number;
+  topics?: Topic[];
 }
 
 interface CertificateData {
@@ -64,6 +75,15 @@ export default function CourseDetailPage() {
   const [claimingCert, setClaimingCert] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [expandedLessons, setExpandedLessons] = useState<string[]>([]);
+
+  const toggleLesson = (lessonId: string) => {
+    setExpandedLessons(prev => 
+      prev.includes(lessonId) 
+        ? prev.filter(id => id !== lessonId) 
+        : [...prev, lessonId]
+    );
+  };
 
   const { user, isAuthenticated } = useSelector((state: RootState) => state.auth);
   const userId = user?._id;
@@ -272,45 +292,67 @@ export default function CourseDetailPage() {
                   </div>
                 ) : (
                   lessons.map((lesson, idx) => {
-                    const isCompleted = completedLessons.includes(lesson._id);
+                    const isExpanded = expandedLessons.includes(lesson._id);
+                    const hasTopics = (lesson.topics?.length ?? 0) > 0;
+                    
                     return (
                       <div 
                         key={lesson._id}
-                        className="group flex items-center justify-between p-5 rounded-2xl border bg-card hover:border-primary/50 transition-all shadow-sm"
+                        className="rounded-2xl border bg-card overflow-hidden shadow-sm transition-all"
                       >
-                        <div className="flex items-center gap-4">
-                          <div className={`
-                            w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors
-                            ${isCompleted ? 'bg-green-100 dark:bg-green-900/30 text-green-600' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-primary/10 group-hover:text-primary'}
-                          `}>
-                            {isCompleted ? <CheckCircle size={20} /> : idx + 1}
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-lg">{lesson.title}</h3>
-                            {lesson.description && (
-                              <p className="text-sm text-muted-foreground line-clamp-1 max-w-md mt-0.5">
+                        {/* Section Header */}
+                        <div 
+                          onClick={() => hasTopics && toggleLesson(lesson._id)}
+                          className={`flex items-center justify-between p-5 cursor-pointer hover:bg-slate-50 transition-colors ${isExpanded ? 'bg-slate-50 border-b' : ''}`}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-bold">
+                              {idx + 1}
+                            </div>
+                            <div>
+                              <h3 className="font-bold text-lg">{lesson.title}</h3>
+                              <p className="text-sm text-muted-foreground line-clamp-1 max-w-md">
                                 {lesson.description}
                               </p>
-                            )}
-                            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
-                               <div className="flex items-center gap-1">
-                                 <PlayCircle size={14} />
-                                 <span>{t('videoLesson')}</span>
-                               </div>
-                               <span>•</span>
-                               <span className="capitalize">{lesson.unlockType} {t('accessSuffix')}</span>
                             </div>
                           </div>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs font-medium text-muted-foreground bg-slate-100 px-2 py-1 rounded-md">
+                              {lesson.topics?.length ?? 0} topics
+                            </span>
+                            {hasTopics && (
+                              isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />
+                            )}
+                          </div>
                         </div>
-                        <Link 
-                          href={getLocalePath(locale, `/courses/${course.slug || id}/${lesson.slug || lesson._id}`)}
-                          className={`
-                            p-2 rounded-full transition-all shadow-sm
-                            ${isCompleted ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-slate-50 dark:bg-slate-900 text-slate-400 group-hover:bg-primary group-hover:text-white'}
-                          `}
-                        >
-                          <ChevronRight size={20} />
-                        </Link>
+
+                        {/* Topics List */}
+                        {isExpanded && hasTopics && (
+                          <div className="bg-white divide-y divide-slate-100 animate-in slide-in-from-top-2 duration-200">
+                            {lesson.topics?.map((topic, tIdx) => {
+                              const isCompleted = completedLessons.includes(topic._id);
+                              return (
+                                <Link 
+                                  key={topic._id}
+                                  href={getLocalePath(locale, `/courses/${course.slug || id}/${lesson.slug || lesson._id}/${topic.slug || topic._id}`)}
+                                  className="group flex items-center justify-between p-4 pl-12 hover:bg-indigo-50/50 transition-colors"
+                                >
+                                  <div className="flex items-center gap-3">
+                                    {isCompleted ? (
+                                      <CheckCircle size={18} className="text-green-500" />
+                                    ) : (
+                                      <FileText size={18} className="text-slate-400 group-hover:text-primary transition-colors" />
+                                    )}
+                                    <span className={`text-sm font-medium ${isCompleted ? 'text-green-700' : 'text-slate-600 group-hover:text-primary'} transition-colors`}>
+                                      {topic.title}
+                                    </span>
+                                  </div>
+                                  <ChevronRight size={16} className="text-slate-300 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     );
                   })

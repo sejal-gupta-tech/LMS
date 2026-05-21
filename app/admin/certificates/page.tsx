@@ -4,9 +4,72 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { Loader2, Search } from 'lucide-react';
+import { Loader2, Search, ChevronDown, Edit, Trash2, Eye, Download as DownloadIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+
+function ActionsDropdown({ cert, onDelete, onDownload, isDownloading }: { cert: Certificate, onDelete: () => void, onDownload: () => void, isDownloading: boolean }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative inline-block text-left" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="inline-flex items-center gap-2 px-3 py-1 border border-zinc-300 rounded-md bg-white text-xs font-medium text-zinc-700 hover:bg-zinc-50 transition-all shadow-sm"
+      >
+        Actions
+        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute left-0 mt-1 w-40 bg-white border border-zinc-200 rounded-lg shadow-xl py-1 z-20 animate-in fade-in slide-in-from-top-1 duration-150">
+          <Link 
+            href={`/admin/certificates/${cert._id}/edit`}
+            className="flex items-center gap-2 px-3 py-2 text-xs text-zinc-600 hover:bg-zinc-50 hover:text-indigo-600 transition-all"
+          >
+            <Edit size={14} />
+            Edit
+          </Link>
+          <button className="w-full flex items-center gap-2 px-3 py-2 text-xs text-zinc-600 hover:bg-zinc-50 hover:text-indigo-600 transition-all text-left">
+            <Eye size={14} />
+            Quick Edit
+          </button>
+          <button 
+            onClick={onDownload}
+            disabled={isDownloading}
+            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-zinc-600 hover:bg-zinc-50 hover:text-indigo-600 transition-all text-left disabled:opacity-50"
+          >
+            <DownloadIcon size={14} />
+            {isDownloading ? 'Downloading...' : 'Download'}
+          </button>
+          <div className="h-px bg-zinc-100 my-1 mx-1" />
+          <button 
+            onClick={() => {
+              setIsOpen(false);
+              onDelete();
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-500 hover:bg-red-50 transition-all text-left"
+          >
+            <Trash2 size={14} />
+            Trash
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const PAGE_SIZE = 20;
 
@@ -369,35 +432,13 @@ export default function CertificatesPage() {
                             {cert.name}
                           </Link>
                         </div>
-                        <div className="text-xs text-zinc-500 mt-1 opacity-0 group-hover:opacity-100 transition">
-                          <Link href={`/admin/certificates/${cert._id}/edit`} className="hover:underline">
-                            Edit
-                          </Link>
-                          <span className="mx-1">|</span>
-                          <Link href={`/admin/certificates/${cert._id}/edit`} className="hover:underline">
-                            Quick Edit
-                          </Link>
-                          <span className="mx-1">|</span>
-                          <button
-                            type="button"
-                            onClick={() => handleDelete(cert._id)}
-                            className="text-red-600 hover:underline"
-                          >
-                            Trash
-                          </button>
-                          <span className="mx-1">|</span>
-                          <Link href={`/admin/certificates/${cert._id}/edit`} className="hover:underline">
-                            View
-                          </Link>
-                          <span className="mx-1">|</span>
-                          <button
-                            type="button"
-                            onClick={() => handleDownload(cert)}
-                            className="hover:underline text-[#2271b1]"
-                            disabled={downloadingId === cert._id}
-                          >
-                            {downloadingId === cert._id ? 'Downloading...' : 'Download'}
-                          </button>
+                        <div className="mt-2">
+                          <ActionsDropdown 
+                            cert={cert} 
+                            onDelete={() => handleDelete(cert._id)} 
+                            onDownload={() => handleDownload(cert)}
+                            isDownloading={downloadingId === cert._id}
+                          />
                         </div>
                       </td>
                       <td className="px-4 py-3">

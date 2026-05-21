@@ -602,6 +602,33 @@ export function prepareCertificateWritePayload(payload = {}, existingCertificate
   };
 }
 
+export function localizeTopicDocument(topic, locale = DEFAULT_LOCALE) {
+  if (!topic || typeof topic !== 'object') {
+    return topic;
+  }
+
+  const plainTopic =
+    typeof topic.toObject === 'function'
+      ? topic.toObject({ virtuals: true })
+      : { ...topic };
+  const safeLocale = getSafeLocale(locale);
+  const titleResult = resolveLocalizedFieldResult(plainTopic.title, safeLocale);
+  const descriptionResult = resolveLocalizedFieldResult(plainTopic.description, safeLocale);
+  const summaryResult = resolveLocalizedFieldResult(plainTopic.summary, safeLocale);
+
+  return {
+    ...plainTopic,
+    translations: buildCmsTranslationsFromLegacy(plainTopic, ['title', 'description', 'summary']),
+    titleTranslations: expandLocalizedField(plainTopic.title),
+    descriptionTranslations: expandLocalizedField(plainTopic.description),
+    summaryTranslations: expandLocalizedField(plainTopic.summary),
+    title: titleResult.value,
+    description: descriptionResult.value,
+    summary: summaryResult.value,
+    localeUsed: titleResult.localeUsed,
+  };
+}
+
 export function applyTranslationPatch(existing, translations, fieldMap = []) {
   const mergedTranslations = mergeTranslationPayload(existing?.translations, translations);
   const next = { ...existing, translations: mergedTranslations };

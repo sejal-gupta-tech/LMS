@@ -2,12 +2,13 @@ import Link from 'next/link';
 import { getCommonMessages, getLocalePath, isSupportedLocale } from '@/lib/i18n';
 import { buildLocalizedMetadata } from '@/lib/seo';
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = isSupportedLocale(params.locale) ? params.locale : 'en';
+  const { locale: rawLocale } = await params;
+  const locale = isSupportedLocale(rawLocale) ? rawLocale : 'en';
   const messages = getCommonMessages(locale);
 
   return buildLocalizedMetadata({
@@ -21,9 +22,9 @@ export function generateMetadata({
 export default async function LocalizedHome({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
   const messages = getCommonMessages(isSupportedLocale(locale) ? locale : 'en');
 
   return (

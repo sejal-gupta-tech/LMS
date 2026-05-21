@@ -2,12 +2,13 @@ import LocalePreferenceSync from '@/components/common/LocalePreferenceSync';
 import { buildLocalizedMetadata } from '@/lib/seo';
 import { isSupportedLocale } from '@/lib/i18n';
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = isSupportedLocale(params.locale) ? params.locale : 'en';
+  const { locale: rawLocale } = await params;
+  const locale = isSupportedLocale(rawLocale) ? rawLocale : 'en';
 
   return buildLocalizedMetadata({
     locale,

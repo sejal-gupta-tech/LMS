@@ -1,10 +1,11 @@
-import { Inter } from 'next/font/google';
+import { Inter, Dancing_Script } from 'next/font/google';
 import { headers } from 'next/headers';
 import './globals.css';
 import AppShell from '@/components/layout/AppShell';
 import { isRtlLocale } from '@/lib/i18n';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script' });
 
 export const metadata = {
   title: 'LMS One Platform',
@@ -14,17 +15,17 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const requestHeaders = headers();
+  const requestHeaders = await headers();
   const locale = requestHeaders.get('x-locale') || 'en';
 
   return (
     <html lang={locale} dir={isRtlLocale(locale) ? 'rtl' : 'ltr'}>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${dancingScript.variable} font-sans`}>
         <AppShell>{children}</AppShell>
       </body>
     </html>

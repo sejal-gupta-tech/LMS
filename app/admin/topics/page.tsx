@@ -17,8 +17,8 @@ export default function AdminTopicsPage() {
   const [bulkAction, setBulkAction] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [dateFilter, setDateFilter] = useState('all');
-  const [courseFilter, setCourseFilter] = useState('all');
-  const [lessonFilter, setLessonFilter] = useState('all');
+  const [courseFilter, setCourseFilter] = useState('');
+  const [lessonFilter, setLessonFilter] = useState('');
   const [page, setPage] = useState(1);
   const [isDeleting, setIsDeleting] = useState(false);
   const activeLocale = 'en';
@@ -43,7 +43,12 @@ export default function AdminTopicsPage() {
 
         if (topicsData.success) setTopics(topicsData.data || []);
         if (lessonsData.success) setLessons(lessonsData.data || []);
-        if (coursesData.success) setCourses(coursesData.data || []);
+        if (coursesData.success) {
+          setCourses(coursesData.data || []);
+          if (coursesData.data?.length > 0 && !courseFilter) {
+            setCourseFilter(coursesData.data[0]._id);
+          }
+        }
       } catch (error) {
         toast.error('Failed to load topics');
       } finally {
@@ -246,10 +251,12 @@ export default function AdminTopicsPage() {
 
           <select
             value={courseFilter}
-            onChange={(e) => setCourseFilter(e.target.value)}
+            onChange={(e) => {
+              setCourseFilter(e.target.value);
+              setLessonFilter('all');
+            }}
             className="border border-zinc-300 rounded-md px-2 py-1 text-sm"
           >
-            <option value="all">All Courses</option>
             {courses.map((course) => (
               <option key={course._id} value={course._id}>
                 {getDisplayTitle(course.title)}
@@ -262,12 +269,13 @@ export default function AdminTopicsPage() {
             onChange={(e) => setLessonFilter(e.target.value)}
             className="border border-zinc-300 rounded-md px-2 py-1 text-sm"
           >
-            <option value="all">All Lessons</option>
-            {lessons.map((lesson) => (
-              <option key={lesson._id} value={lesson._id}>
-                {getDisplayTitle(lesson.title)}
-              </option>
-            ))}
+            {lessons
+              .filter(lesson => courseFilter === 'all' || (lesson.courseId || lesson.course) === courseFilter)
+              .map((lesson) => (
+                <option key={lesson._id} value={lesson._id}>
+                  {getDisplayTitle(lesson.title)}
+                </option>
+              ))}
           </select>
 
           <button

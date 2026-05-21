@@ -99,7 +99,17 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  return withCommonHeaders(NextResponse.next(), request);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-locale', locale || getPreferredLocale(request));
+  requestHeaders.set('x-next-locale', locale || getPreferredLocale(request));
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  return withCommonHeaders(response, request);
 }
 
 export const config = {

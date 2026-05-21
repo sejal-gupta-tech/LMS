@@ -30,9 +30,11 @@ export default function AdminLessonsPage() {
   const adminLessonsPath = getLocalePath(locale, '/admin/lessons');
   
   const [lessons, setLessons] = useState<any[]>([]);
+  const [courses, setCourses] = useState<any[]>([]);
   const [courseMap, setCourseMap] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [courseFilter, setCourseFilter] = useState('');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -59,6 +61,10 @@ export default function AdminLessonsPage() {
       }
       
       if (coursesData.success) {
+        setCourses(coursesData.data);
+        if (coursesData.data.length > 0 && !courseFilter) {
+          setCourseFilter(coursesData.data[0]._id);
+        }
         const cmap: Record<string, any> = {};
         coursesData.data.forEach((c: any) => {
           cmap[c._id] = c;
@@ -131,9 +137,16 @@ export default function AdminLessonsPage() {
 
   const filteredLessons = lessons.filter(lesson => {
     const lessonTitle = getDisplayTitle(lesson.title);
-    const courseTitle = getDisplayTitle(courseMap[lesson.courseId || lesson.course]?.title);
-    return lessonTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-           courseTitle.toLowerCase().includes(searchQuery.toLowerCase());
+    const courseId = lesson.courseId || lesson.course;
+    const courseEntry = courseMap[courseId] || {};
+    const courseTitle = getDisplayTitle(courseEntry.title);
+    
+    const matchesSearch = lessonTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         courseTitle.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesCourse = courseFilter === 'all' || courseId === courseFilter;
+    
+    return matchesSearch && matchesCourse;
   });
 
   const totalPages = Math.ceil(filteredLessons.length / itemsPerPage);
@@ -170,6 +183,17 @@ export default function AdminLessonsPage() {
           </div>
           
           <div className="flex items-center gap-2 w-full md:w-auto">
+            <select
+              value={courseFilter}
+              onChange={(e) => setCourseFilter(e.target.value)}
+              className="px-3 py-2 bg-white border border-zinc-200 rounded-xl text-sm font-medium text-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all"
+            >
+              {courses.map(course => (
+                <option key={course._id} value={course._id}>
+                  {getDisplayTitle(course.title)}
+                </option>
+              ))}
+            </select>
             <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-zinc-200 rounded-xl text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition-all">
               <Filter className="w-4 h-4" /> Filter
             </button>
@@ -194,6 +218,7 @@ export default function AdminLessonsPage() {
                 </th>
                 <th className="px-4 py-3">Lesson Details</th>
                 <th className="px-4 py-3">Parent Course</th>
+                <th className="px-4 py-3 text-center">Topics</th>
                 <th className="px-4 py-3">Order</th>
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3 text-right">Actions</th>
@@ -277,6 +302,11 @@ export default function AdminLessonsPage() {
                           <div className="w-2 h-2 rounded-full bg-indigo-400" />
                           {courseTitle}
                         </Link>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <span className={`inline-flex items-center justify-center min-w-[2rem] h-6 px-1.5 rounded-lg font-bold text-xs ${lesson.topics?.length ? 'bg-indigo-50 text-indigo-600' : 'bg-zinc-100 text-zinc-400'}`}>
+                          {lesson.topics?.length || 0}
+                        </span>
                       </td>
                       <td className="px-4 py-4">
                         <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-100 text-zinc-600 text-xs font-bold">

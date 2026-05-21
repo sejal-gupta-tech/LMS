@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Award, Download, X, Share2, ShieldCheck } from 'lucide-react';
+import { ModernCertificate } from '@/components/certificates/ModernCertificate';
 
 interface CertificateModalProps {
   isOpen: boolean;
@@ -26,41 +27,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ isOpen, onCl
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full -ml-32 -mb-32 blur-3xl" />
           
-          <div className="relative w-full aspect-[1.414/1] bg-white dark:bg-slate-950 border-8 border-double border-slate-200 dark:border-slate-800 p-8 shadow-inner flex flex-col items-center justify-between text-center overflow-hidden group">
-            <div className="absolute top-4 left-4 flex items-center gap-1 opacity-20">
-               <ShieldCheck size={16} /> <span className="text-[10px] font-bold uppercase tracking-widest">Verified LMS</span>
-            </div>
-            
-            <div className="mt-8">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4 mx-auto border-2 border-primary/20 shadow-lg">
-                <Award size={32} />
-              </div>
-              <h2 className="text-3xl font-serif font-black tracking-tight mb-2">CERTIFICATE</h2>
-              <p className="text-[10px] font-bold tracking-[0.3em] text-muted-foreground uppercase">of Completion</p>
-            </div>
-
-            <div className="my-6">
-              <p className="text-sm text-muted-foreground mb-1 italic">This is to certify that</p>
-              <h3 className="text-2xl font-black text-primary border-b-2 border-primary/20 pb-2 mb-4 px-8 min-w-[200px]">
-                {data.userName || 'Student Name'}
-              </h3>
-              <p className="text-sm text-muted-foreground italic mb-2">has successfully completed the course</p>
-              <h4 className="text-xl font-bold max-w-md">{data.courseTitle}</h4>
-            </div>
-
-            <div className="flex justify-between w-full mt-4 pb-4">
-               <div className="text-left">
-                  <p className="text-[8px] font-bold text-muted-foreground uppercase opacity-50">Issue Date</p>
-                  <p className="text-xs font-bold">{new Date(data.issuedAt).toLocaleDateString()}</p>
-               </div>
-               <div className="text-right">
-                  <p className="text-[8px] font-bold text-muted-foreground uppercase opacity-50">Certificate ID</p>
-                  <p className="text-xs font-bold text-primary">{data.certificateId}</p>
-               </div>
-            </div>
-            
-            {/* Hologram-like effect */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 pointer-events-none" />
+          <div className="relative w-full max-w-2xl transform scale-90 md:scale-100 shadow-2xl">
+            <ModernCertificate 
+              userName={data.userName}
+              courseTitle={data.courseTitle}
+              issuedAt={new Date(data.issuedAt).toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, ' / ')}
+              description={`This certificate is awarded to ${data.userName} for the successful completion of ${data.courseTitle}.`}
+              certificateType="Completion"
+            />
           </div>
         </div>
 
