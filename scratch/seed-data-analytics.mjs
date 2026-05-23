@@ -5,12 +5,12 @@ const MONGODB_URI = process.argv[2];
 const courseStructure = [
   {
     title: "Foundations",
-    description: "This section explains the basic concepts of data, types of analytics and the difference between Data Science and Data Analytics.",
+    description: "Data concepts, analytics types, Data Science vs Data Analytics.",
     topics: ["Introduction", "Data and its Types", "Types of Data Analytics", "Data Science vs. Data Analytics"]
   },
   {
     title: "Excel",
-    description: "This section covers how Excel is used for data cleaning, analysis, formulas, pivot tables, charts and dashboards.",
+    description: "Data cleaning, formulas, pivot tables, charts & dashboards.",
     topics: [
       "Introduction", "Basic Excel Formulas", "Sorting", "Filtering", "Conditional formatting", 
       "Data Validation", "Removing duplicates", "Lookup functions: VLOOKUP, HLOOKUP, INDEX & MATCH", 
@@ -20,37 +20,37 @@ const courseStructure = [
   },
   {
     title: "Python",
-    description: "This section introduces Python basics and explains how it is used for data analysis and visualization.",
+    description: "Python basics, variables, data types, loops, functions & collections.",
     topics: ["Introduction", "Download and Install", "Variables", "Data Types", "Operators", "Conditional Statements", "Loops", "Functions", "String", "Lists", "Dictionary"]
   },
   {
     title: "Data Analysis Libraries",
-    description: "This section focuses on important Python libraries used for data manipulation, numerical analysis, visualization and basic modeling.",
+    description: "Pandas, NumPy, Matplotlib, Seaborn & Scikit-learn.",
     topics: ["Pandas: Data manipulation and analysis", "NumPy: Numerical operations and matrix handling", "Matplotlib/Seaborn: Data visualization", "Scikit-learn: Data preprocessing and statistical modeling"]
   },
   {
     title: "Reading and Loading Datasets",
-    description: "This section explains how to import data from different file formats and prepare it for analysis.",
+    description: "Import CSV, Excel & JSON files, export & manipulate dataframes.",
     topics: ["Reading CSV, Excel & JSON files", "Exporting dataframes to CSV/JSON", "Slicing, Indexing & Manipulating"]
   },
   {
     title: "Data Preprocessing",
-    description: "This section covers techniques used to clean, transform and prepare data before analysis.",
+    description: "Data cleaning, missing data, outliers, transformation & feature engineering.",
     topics: ["Introduction", "Data Cleaning", "Handling Missing Data", "Handling outliers", "Data Transformation", "Feature Engineering", "Data Sampling"]
   },
   {
     title: "Data Visualization",
-    description: "This section explains how charts and graphs are used to present data clearly and highlight key insights.",
+    description: "Charts & graphs using Matplotlib, Seaborn & Plotly.",
     topics: ["Introduction", "Visualization with Matplotlib", "Visualization using Seaborn", "Visualization using Plotly"]
   },
   {
     title: "SQL",
-    description: "SQL is essential for working with structured data stored in databases. This section focuses on querying, filtering, aggregating and optimizing data for analysis.",
+    description: "Querying, filtering, joins, aggregations & query optimization.",
     topics: ["Introduction", "Installing MySQL/PostgreSQL", "CREATE DATABASE", "Queries", "Filtering & Logic", "Aggregate functions", "Joins", "Subqueries", "Window Functions", "Date and Time Functions", "Data Cleaning: Duplicates, Missing values & Type casting", "Performance Basics: Indexes & Query optimization"]
   },
   {
     title: "Mathematics & Statistics",
-    description: "Mathematics and statistics provide the core logic behind data analysis. This section helps in understanding data patterns, measuring uncertainty and making data-driven decisions.",
+    description: "Probability, descriptive & inferential statistics, linear algebra & calculus.",
     topics: [
       "Basic probability: Sample space, Types of events, Probability Rules", "Conditional Probability", "Bayes' Theorem", "Probability distributions",
       "Descriptive Statistics : Mean, Median, Mode, Variance, Standard deviation", "Inferential Statistics: Confidence Interval, Hypothesis Testing, Central Limit Theorem", "Skewness and Kurtosis", "Tests: T-test, F-Test, Z-test, Chi-square Test", "Correlation: Pearson, Spearman",
@@ -59,22 +59,22 @@ const courseStructure = [
   },
   {
     title: "Exploratory Data Analysis (EDA)",
-    description: "Exploratory Data Analysis (EDA) helps understand data through summaries and visualizations. It is used to identify patterns, trends and potential issues in data.",
+    description: "Univariate, bivariate & multivariate analysis, correlation & clustering.",
     topics: ["Introduction", "Univariate, Bivariate and Multivariate data analysis", "Visualization: Histograms, Boxplots, Q-Q plots", "Correlation and Covariance", "Cross-tabulation", "Cluster Analysis, Factor & Canonical Correlation Analysis"]
   },
   {
     title: "Power BI",
-    description: "Power BI helps transform raw data into interactive dashboards and reports. This section focuses on data modeling, DAX calculations and visual storytelling.",
+    description: "Data modeling, DAX calculations, interactive dashboards & reports.",
     topics: ["Introduction", "Data Sources and its type", "Power Query", "Data Modeling", "Merging & Appending queries", "Data Analysis Expressions (DAX)", "Creating measures using DAX", "Calculated columns using DAX", "Data Visualization With Multiple Charts", "Filters in Power BI", "Slicer In Power BI", "Dashboards", "Publishing & Sharing reports", "Row-Level Security (RLS)"]
   },
   {
     title: "Tableau",
-    description: "Tableau is a popular data visualization tool used to explore data and build interactive dashboards. It enables analysts to communicate insights effectively through visuals.",
+    description: "Data connections, calculated fields, visualizations & dashboards.",
     topics: ["Introduction", "Connecting to data sources", "Data Types", "Calculated fields", "Set in Tableau", "Operators", "Visualization", "Filtering in Visualization", "Dashboard in Tableau", "Layout & formatting in Dashboard"]
   },
   {
     title: "Projects",
-    description: "This section includes practical projects to apply the concepts covered in the tutorial.",
+    description: "Practical projects with source code to apply learned concepts.",
     topics: ["Data Analytics Projects [With Source code]"]
   },
   {

@@ -9,7 +9,7 @@ const topicsData = [
     },
     keyPoints: [
       'Data Analytics is the science of analyzing raw data to make conclusions and find patterns.',
-      'The modern data journey follows a pipeline: Collection ➔ Cleaning ➔ Analysis ➔ Visualization ➔ Decision.',
+      'The modern data journey follows a pipeline: Collection ➔ Cleaning ➔ Analysis ➜ Visualization ➜ Decision.',
       'Data is only valuable when it is transformed into actionable business insights.',
       'Organizations like Netflix and Spotify use analytics to personalize user experiences and recommend content.'
     ],
@@ -94,18 +94,38 @@ const topicsData = [
     </svg>
     <div class="mt-2 text-xs font-semibold text-slate-500 tracking-wider uppercase">The 5 Stages of the Data Journey</div>
   </div>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Why Data Analytics is Essential</h3>
-  <p>Every major tech company uses data analytics to stay ahead. Here's a brief example of data in action:</p>
-  <ul class="list-disc pl-6 space-y-2">
-    <li><strong>Netflix</strong> analyzes viewing history, search terms, and time spent on shows to recommend what you should watch next. Over 80% of what Netflix users watch is driven by recommendations!</li>
-    <li><strong>Spotify</strong> creates personalized playlists like "Discover Weekly" by analyzing what music you skip, save, and listen to repeatedly.</li>
-    <li><strong>Amazon</strong> predicts which products you're likely to buy and pre-allocates them to nearby warehouses to shorten delivery times.</li>
-  </ul>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">Real-World Impact</h4>
-    <p class="text-sm">Without analysis, data is just noise. Analytics provides the clarity needed to make confident, fact-backed business decisions.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">You are hired by "ElectroMart", a fast-growing online store. The CEO asks: "Why are our profits dropping despite a 20% increase in customer transactions?" You need to apply the data pipeline to solve this business mystery.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Map out the 5 stages of the data pipeline for ElectroMart. Write down how data travels from customer clicks to the CEO\'s final discount adjustments.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Inspect the e-commerce column metadata. Which column represents the raw inputs (Collection stage) and which column represents the processed outcomes?</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Draft a 1-page proposal for ElectroMart outlining a pipeline to capture customer feedback, clean up empty reviews, and highlight negative ratings for the support team.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Logic Challenge</h4>
+      <p class="text-sm">If raw data contains spelling mistakes in country names, which stage of the data pipeline must fix it before any charts are drawn?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Create a Git repository named <code>electromart-analytics</code>. Add your 1-page pipeline proposal as a <code>README.md</code> markdown file. This will be the home of your data analytics portfolio.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
@@ -198,20 +218,48 @@ const topicsData = [
         </div>
         <div class="p-3 bg-white border border-emerald-100 rounded-xl">
           <strong class="text-emerald-800 text-sm">Continuous Data</strong>
-          <p class="text-xs text-slate-500 mt-1">Measurable values that can take any decimal number in a range. Examples: Person's height, water temperature, product weight, stock price.</p>
+          <p class="text-xs text-slate-500 mt-1">Measurable values that can take any decimal number in a range. Examples: Person\'s height, water temperature, product weight, stock price.</p>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-800 my-4">
-    <h4 class="font-bold">⚠️ Key Trap for Beginners</h4>
-    <p class="text-sm">Just because data contains numbers doesn't mean it's Quantitative. For example, a credit card number or a ZIP code (e.g. 90210) contains digits, but adding or average-scaling them makes no sense. Therefore, they are considered <strong>Nominal Qualitative Data</strong>.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">The marketing team at ElectroMart hands you a raw export spreadsheet. It contains columns like Customer_ID, Review_Score, Purchase_Amount, and Order_Date. You must classify these variables so the engineering team knows how to process them.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write down the classification (Nominal, Ordinal, Discrete, or Continuous) for these columns: <code>Customer_ID</code>, <code>Purchase_Amount</code>, <code>Review_Score (1 to 5 Stars)</code>, and <code>Items_Count</code>.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Identify one column in the e-commerce dataset that is Quantitative but behaves as discrete, and one that represents continuous time or currency values.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Design a data dictionary schema table for ElectroMart. Columns should include: Field Name, Data Type, Description, and Sample Value.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Logic Challenge</h4>
+      <p class="text-sm">If customer support notes contain free-form text remarks, which data type category does it fall under? Can it be easily converted to quantitative values?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Save your data dictionary schema table as a markdown table. Add it to a new file named <code>DATA_DICTIONARY.md</code> in your electromart-analytics Git repository.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Data and its Types Quiz' },
-      description: { en: 'Test your understanding of the difference between qualitative/quantitative data, and their respective subdivisions.' },
+      description: { en: 'Test your understanding of the difference between qualitative/quantitative data.' },
       questions: [
         {
           text: { en: 'A feedback form asks you to rate your experience as "Satisfied, Neutral, or Dissatisfied." What type of data is this?' },
@@ -238,7 +286,7 @@ const topicsData = [
         {
           text: { en: 'Why are ZIP codes considered Qualitative data instead of Quantitative data?' },
           options: [
-            { en: 'Because they only contain letters in some countries.' },
+            { en: 'Keep letters in some countries.' },
             { en: 'Because performing mathematical operations (like calculating an average ZIP code) yields no meaningful numerical insight.' },
             { en: 'Because they represent geographical distance.' },
             { en: 'Because they change frequently.' }
@@ -304,10 +352,38 @@ const topicsData = [
       <p class="text-xs text-emerald-700 font-bold mt-2">Example: A system automatically purchasing extra server space when website traffic exceeds a threshold.</p>
     </div>
   </div>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">The Analytics Hierarchy</h4>
-    <p class="text-sm">These methods build on top of one another. You cannot diagnose a trend without first describing it, and you cannot predict the future without understanding what factors drive your past results.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart wants to reduce cart abandonment. You need to propose 4 analytics solutions—one for each category (Descriptive, Diagnostic, Predictive, and Prescriptive) to solve this.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write down one specific question related to e-commerce cart abandonment for each of the four categories. (e.g. Descriptive: "How many users abandoned carts last week?")</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">If you find that customer checkout logs have high failure timestamps, what category of analytics are you performing when you link failure times to local server drops?</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Draft a mock dashboard layout design that displays descriptive sales statistics (KPI Cards, bar charts) alongside diagnostic alerts showing inventory shortages.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Logic Challenge</h4>
+      <p class="text-sm">If an algorithm automatically recommends a $5 discount coupon to an active user who has hovered on checkout for over 2 minutes, which category of analytics is this?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Add a new section called <code>Analytics Objectives</code> in your electromart-analytics <code>README.md</code>. Define how you will use the four branches of data analysis to increase sales.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
@@ -410,15 +486,43 @@ const topicsData = [
       </tbody>
     </table>
   </div>
-  
-  <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-800 my-4">
-    <h4 class="font-bold">Summary Metaphor</h4>
-    <p class="text-sm">Think of a <strong>Data Scientist</strong> as a team of engineers building a Formula 1 racing car from scratch. Think of a <strong>Data Analyst</strong> as the driver who knows exactly how to pilot that car to win the race!</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart has hired both a Data Scientist and a Data Analyst to boost sales. The analyst is tasked with building dashboards, while the scientist is tasked with building a recommender engine. You must distinguish their deliverables.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write down a checklist of 3 tasks for the ElectroMart Data Analyst (e.g. SQL query for top items) and 3 tasks for the Data Scientist (e.g. training recommender model).</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Which tools (Excel, SQL, or Python) will you select to create a monthly sales report, and which tools would you select to build a predictive pricing model?</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a brief 1-page deployment roadmap demonstrating how the Data Analyst\'s reports and the Data Scientist\'s recommendation engine interact to improve customer checkout value.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Logic Challenge</h4>
+      <p class="text-sm">If a dashboard displays sales metrics but is too slow to load, whose responsibility is it to optimize the database index: the Data Analyst, Data Scientist, or a Database Administrator?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Create a file named <code>ROLES_AND_TASKS.md</code> in your electromart-analytics repository. Document the roles and tool stack you will use throughout this project.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Data Science vs. Data Analytics Quiz' },
-      description: { en: 'Identify key procedural, tools-based and organizational differences between data science and data analytics roles.' },
+      description: { en: 'Identify key differences between data science and data analytics roles.' },
       questions: [
         {
           text: { en: 'Which of the following is primarily the responsibility of a Data Scientist rather than a Data Analyst?' },
@@ -440,7 +544,7 @@ const topicsData = [
             { en: 'Designing user interfaces for database apps.' }
           ],
           correctAnswerIndex: 1,
-          explanation: { en: 'Data Analysts primarily analyze past (historical) data trends to resolve pre-defined queries.' }
+          explanation: { en: 'Data Analysts primarily look at historical (past) and current (present) data to identify trends and answer specific business queries.' }
         },
         {
           text: { en: 'If you want to build interactive charts and communicate business insights directly to managers, which role aligns best?' },

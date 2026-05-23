@@ -11,7 +11,7 @@ async function run() {
     console.log('Course not found');
     process.exit(1);
   }
-  const lesson = await Lesson.findOne({ course: course._id, slug: 'excel' });
+  const lesson = await Lesson.findOne({ course: course._id, slug: 'python' });
   if (!lesson) {
     console.log('Lesson not found');
     process.exit(1);

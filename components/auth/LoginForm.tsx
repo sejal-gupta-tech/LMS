@@ -28,6 +28,7 @@ export default function LoginForm({ redirectPath }: LoginFormProps) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    console.log('[LOGIN] Submitting login...', { email: formData.email });
 
     try {
       const res = await fetch('/api/auth/login', {
@@ -37,12 +38,15 @@ export default function LoginForm({ redirectPath }: LoginFormProps) {
         body: JSON.stringify(formData),
       });
 
+      console.log('[LOGIN] Response status:', res.status);
       const data = await res.json();
+      console.log('[LOGIN] Response data:', data);
 
       if (!res.ok) throw new Error(data.error || 'Login failed');
 
       // Update Redux state
       dispatch(loginSuccess(data.user));
+      console.log('[LOGIN] Redux dispatched, redirecting to:', redirectPath || (data.user.role === 'student' ? '/dashboard' : '/admin'));
       
       // Redirect based on provided path or role
       if (redirectPath) {
@@ -53,6 +57,7 @@ export default function LoginForm({ redirectPath }: LoginFormProps) {
       }
 
     } catch (err: any) {
+      console.error('[LOGIN] Error:', err);
       setError(err.message);
       dispatch(loginFailure(err.message));
     } finally {

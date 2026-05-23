@@ -25,8 +25,6 @@ const topicsData = [
   </blockquote>
   
   <h3 class="text-xl font-bold mt-6 mb-3">Spreadsheet Anatomy</h3>
-  <p>An Excel spreadsheet is organized as a giant grid of cells:</p>
-  
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
     <div class="p-4 border border-blue-100 bg-blue-50/50 rounded-2xl">
       <h4 class="font-bold text-blue-900">Columns (A, B, C...)</h4>
@@ -41,45 +39,43 @@ const topicsData = [
       <p class="text-xs text-slate-600 mt-1">The intersection of a row and a column. This is where data lives.</p>
     </div>
   </div>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Spreadsheet vs. Database</h3>
-  <div class="overflow-x-auto border border-slate-200 rounded-2xl">
-    <table class="min-w-full divide-y divide-slate-200 text-sm">
-      <thead class="bg-slate-50">
-        <tr>
-          <th class="px-4 py-3 text-left font-bold text-slate-900">Feature</th>
-          <th class="px-4 py-3 text-left font-bold text-slate-900">Excel Spreadsheet</th>
-          <th class="px-4 py-3 text-left font-bold text-slate-900">Relational Database (SQL)</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-200 bg-white">
-        <tr>
-          <td class="px-4 py-3 font-semibold">Capacity</td>
-          <td class="px-4 py-3 text-slate-700">1,048,576 rows (Limit).</td>
-          <td class="px-4 py-3 text-slate-700">Millions/Billions of rows.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-semibold">User Interface</td>
-          <td class="px-4 py-3 text-slate-700">Highly visual, cell-based editing.</td>
-          <td class="px-4 py-3 text-slate-700">Command-line / Query based.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-semibold">Use Case</td>
-          <td class="px-4 py-3 text-slate-700">Ad-hoc reporting, charts, fast tables.</td>
-          <td class="px-4 py-3 text-slate-700">Enterprise data storage & retrieval.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">Did You Know?</h4>
-    <p class="text-sm">Excel was first released by Microsoft in 1985 for the Apple Macintosh. It is now used by over 750 million people worldwide!</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">The CEO of ElectroMart sends you a raw CSV file containing customer transaction histories. Your first task is to open it in Excel, understand the column layout, and make sure cells align correctly.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Open Excel, create a new blank workbook, and type the column headers: Transaction_ID, Customer_Name, Order_Date, Category, Quantity, Sales, and Profit.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Download the e-commerce dataset template and identify the absolute cell coordinates of the first transaction row (usually row 2).</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Design the visual landing block for your dashboard worksheet. Set up a section labeled "E-COMMERCE METRICS WORKBOOK".</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Double click on the separator between column headers A and B. What does this shortcut do to the column width?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Save your Excel file as <code>electromart_raw_data.xlsx</code>. Document your setup step in the README file of your portfolio repository.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Excel Introduction Quiz' },
-      description: { en: 'Test your knowledge on spreadsheet terminology and basics.' },
+      description: { en: 'Test your knowledge on spreadsheet terminology.' },
       questions: [
         {
           text: { en: 'What is the intersection of a column and a row called in Excel?' },
@@ -111,7 +107,7 @@ const topicsData = [
       'Excel ranges are written using a colon separator, like A1:A10.'
     ],
     notes: [
-      'Always check your ranges: Excel might accidentally include header cells or blank rows.',
+      'Always check your ranges: Excel might include header cells or blank rows.',
       'COUNT only counts cells containing numbers. Use COUNTA to count cells containing text.'
     ],
     resources: [
@@ -134,26 +130,44 @@ const topicsData = [
       <strong>=AVERAGE(range)</strong>
       <p class="text-xs text-slate-600 mt-1">Calculates the mean of the range. Example: <code>=AVERAGE(B1:B10)</code></p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>=COUNT(range)</strong>
-      <p class="text-xs text-slate-600 mt-1">Counts cells containing numerical values. Example: <code>=COUNT(C1:C20)</code></p>
+  </div>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">Now that the transaction data is loaded, your manager wants to know the overall sales and average purchase value of customer orders.</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>=MAX(range) & =MIN(range)</strong>
-      <p class="text-xs text-slate-600 mt-1">Finds highest/lowest numbers in the range. Example: <code>=MAX(D1:D10)</code></p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write formulas to sum all transaction values in column F (Sales) and calculate the average ticket size using <code>=SUM()</code> and <code>=AVERAGE()</code>.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">If Sales values are in cells F2 to F100, calculate the total revenue using <code>=SUM(F2:F100)</code>. Record the resulting value.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a KPI block card in your sheet. Use formulas to display Total Orders, Total Sales, and Average Revenue dynamically.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write a formula to find the single highest order amount in the F2:F100 range. Hint: Use <code>=MAX()</code>.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Take a screenshot of your dynamic KPI cards. Add a new section in your proposal repository showing these aggregated sales metrics.</p>
     </div>
   </div>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Range Reference Notation</h3>
-  <p>To refer to multiple cells together, use a colon <code>:</code> to represent a continuous block:</p>
-  <ul class="list-disc pl-6 space-y-1 text-sm">
-    <li><code>A1:A10</code> - All cells from column A, rows 1 through 10.</li>
-    <li><code>A1:C3</code> - A 3x3 block containing columns A, B, and C across rows 1, 2, and 3.</li>
-  </ul>
 </div>`,
     quiz: {
       title: { en: 'Basic Excel Formulas Quiz' },
-      description: { en: 'Verify your understanding of formula syntax and ranges.' },
+      description: { en: 'Verify your understanding of formula syntax.' },
       questions: [
         {
           text: { en: 'Which character MUST every formula in Excel begin with?' },
@@ -187,39 +201,54 @@ const topicsData = [
     keyPoints: [
       'Sorting helps identify minimum/maximum values, alphabetical listings, and custom date orderings.',
       'Single-level sorting reorganizes data based on one column.',
-      'Multi-level sorting applies hierarchical sorting across multiple columns (e.g., Department, then Salary).'
+      'Multi-level sorting applies hierarchical sorting across multiple columns.'
     ],
     notes: [
       'Ensure you expand your selection when sorting. If you do not, you will scramble your data rows.',
-      'Custom lists can be created to sort non-alphabetical categories (e.g., High, Medium, Low).'
+      'Custom lists can be created to sort non-alphabetical categories.'
     ],
     resources: [
       { title: 'Microsoft Support: Sort data in a range', url: 'https://support.microsoft.com/' }
     ],
     contentHtml: `<div class="space-y-6">
   <p>Sorting arranges data in a specific logical sequence—alphabetical, numerical, or chronological. It helps analysts identify extremes, cluster categories, and find trends.</p>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-    <div class="p-5 border border-blue-100 bg-blue-50/50 rounded-2xl">
-      <h4 class="font-bold text-blue-900">Single-Level Sorting</h4>
-      <p class="text-sm text-slate-700 mt-2">Reorganizes data based on one key column.</p>
-      <p class="text-xs text-slate-500 mt-2">Example: Sorting a product inventory list from highest to lowest price to identify expensive products.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart has transaction records in random order. Your team wants to view the highest revenue transactions first to identify top purchasing behavior.</p>
     </div>
-    <div class="p-5 border border-purple-100 bg-purple-50/50 rounded-2xl">
-      <h4 class="font-bold text-purple-900">Multi-Level Sorting</h4>
-      <p class="text-sm text-slate-700 mt-2">Applies hierarchical sorting rules across multiple columns.</p>
-      <p class="text-xs text-slate-500 mt-2">Example: Sorting employees by <strong>Department</strong> (alphabetically), and then by <strong>Salary</strong> (highest to lowest) within each department.</p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Apply a single-level descending sort on the Sales column (F) to immediately bubble the largest dollar purchases to the top.</p>
     </div>
-  </div>
-  
-  <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-800 my-4">
-    <h4 class="font-bold">⚠️ Warning: The Scrambled Row Trap</h4>
-    <p class="text-sm">When you highlight and sort only a single column, Excel will ask you to "Expand the Selection." Always select <strong>"Expand the selection"</strong>. Otherwise, Excel will sort only that column while leaving the other columns untouched, completely scrambling your data records!</p>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Set up a multi-level sort: first sort by Category (alphabetical, A to Z), and then by Sales (descending, largest to smallest).</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a sorted list of your top 10 transactions. Extract their details into a separate table on your report sheet.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">How do you sort items by day of the week (Monday, Tuesday, etc.) without using alphabetical order? Hint: Use custom lists.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Document the sorting criteria and results in your portfolio project folder under a section named <code>Transaction Ranking</code>.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Sorting Quiz' },
-      description: { en: 'Test your understanding of sorting operations and best practices.' },
+      description: { en: 'Test sorting rules.' },
       questions: [
         {
           text: { en: 'What does Excel ask you to do if you select and sort only one column inside a larger table?' },
@@ -230,27 +259,17 @@ const topicsData = [
             { en: 'Add a chart' }
           ],
           correctAnswerIndex: 1,
-          explanation: { en: 'Excel warns you because sorting a single column out of a table will break relationship links between rows. Expanding the selection sorts entire rows together.' }
+          explanation: { en: 'Excel warns you because sorting a single column out of a table will break relationship links between rows.' }
         },
         {
           text: { en: 'If you need to sort data by State, and then by City within each State, which feature should you use?' },
-          options: [
-            { en: 'Single-level Sort' },
-            { en: 'Filter' },
-            { en: 'Multi-level Sort' },
-            { en: 'Data Validation' }
-          ],
+          options: [{ en: 'Single-level Sort' }, { en: 'Filter' }, { en: 'Multi-level Sort' }, { en: 'Data Validation' }],
           correctAnswerIndex: 2,
           explanation: { en: 'Multi-level sorting allows you to specify primary, secondary, and tertiary sorting rules.' }
         },
         {
           text: { en: 'How should you sort product priorities labeled: High, Medium, Low?' },
-          options: [
-            { en: 'Alphabetically Ascending (A to Z)' },
-            { en: 'Alphabetically Descending (Z to A)' },
-            { en: 'Custom List Sort' },
-            { en: 'Numerical Sort' }
-          ],
+          options: [{ en: 'Alphabetically Ascending (A to Z)' }, { en: 'Alphabetically Descending (Z to A)' }, { en: 'Custom List Sort' }, { en: 'Numerical Sort' }],
           correctAnswerIndex: 2,
           explanation: { en: 'Alphabetical sort would organize them as High, Low, Medium (H, L, M) which is incorrect. A Custom List Sort maintains their logical order.' }
         }
@@ -274,66 +293,59 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>Filtering temporarily hides rows that you do not want to see, letting you focus only on relevant data points.</p>
-  
-  <blockquote>
-    "Unlike sorting, which reorganizes the rows of your dataset, filtering simply hides records that do not meet your criteria. The hidden rows are NOT deleted."
-  </blockquote>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Filtering Types</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Text Filters</strong>
-      <p class="text-xs text-slate-600 mt-1">Filter by contents: <code>Begins With</code>, <code>Ends With</code>, <code>Contains</code>.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">The ElectroMart operations lead wants to isolate transactions from the "Technology" category with values greater than $500 to evaluate supplier fees.</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Number Filters</strong>
-      <p class="text-xs text-slate-600 mt-1">Filter by threshold: <code>Greater Than</code>, <code>Top 10</code>, <code>Between</code>.</p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Apply the filter dropdown on your Category column. Uncheck all except "Technology". Then apply a Number Filter of "Greater Than" 500 on the Sales column.</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Color Filters</strong>
-      <p class="text-xs text-slate-600 mt-1">Filter cells containing a specific cell highlight fill color.</p>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Filter the transactions to show only orders shipped to "California" (CA) state with a profit margin less than zero. Note the count of these transactions.</p>
     </div>
-  </div>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">Pro Tip: Spotting Filtered Sheets</h4>
-    <p class="text-sm">You can quickly tell if a sheet is currently filtered because the row numbers on the left will turn <strong>blue</strong> instead of black, and a filter funnel icon will appear on the header cell of the filtered column.</p>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Isolate all orders from last quarter. Copy the filtered rows into a new worksheet named "Q4_Performance_Data".</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write down the shortcut keys to toggle the filter dropdown buttons on and off in Excel (Hint: Ctrl + Shift + L).</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Describe your findings about California\'s negative margin orders in a new file <code>UNPROFITABLE_ORDERS.md</code> inside your git repository.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Filtering Quiz' },
-      description: { en: 'Validate your understanding of filtering behaviors and visual indicators.' },
+      description: { en: 'Validate your understanding of filtering behaviors.' },
       questions: [
         {
           text: { en: 'What happens to the row numbers on the left of the Excel window when a filter is active?' },
-          options: [
-            { en: 'They turn red.' },
-            { en: 'They disappear entirely.' },
-            { en: 'They turn blue.' },
-            { en: 'They become bold and italic.' }
-          ],
+          options: [{ en: 'They turn red.' }, { en: 'They disappear entirely.' }, { en: 'They turn blue.' }, { en: 'They become bold and italic.' }],
           correctAnswerIndex: 2,
           explanation: { en: 'Excel changes row headers to blue to visually signify that rows are hidden due to an active filter.' }
         },
         {
           text: { en: 'Does filtering delete data rows permanently?' },
-          options: [
-            { en: 'Yes, if you save the file.' },
-            { en: 'No, it only temporarily hides them from view.' },
-            { en: 'Yes, unless you click Undo.' },
-            { en: 'Only if the cells are blank.' }
-          ],
+          options: [{ en: 'Yes, if you save the file.' }, { en: 'No, it only temporarily hides them from view.' }, { en: 'Yes, unless you click Undo.' }, { en: 'Only if the cells are blank.' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Filtering is non-destructive. Hiding rows does not affect the actual data, and clearing the filter restores all rows.' }
         },
         {
           text: { en: 'Which filter option should you use to see sales between $5,000 and $10,000?' },
-          options: [
-            { en: 'Text Filter -> Contains' },
-            { en: 'Number Filter -> Between' },
-            { en: 'Color Filter -> Custom' },
-            { en: 'Sort Ascending' }
-          ],
+          options: [{ en: 'Text Filter -> Contains' }, { en: 'Number Filter -> Between' }, { en: 'Color Filter -> Custom' }, { en: 'Sort Ascending' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Number Filter -> Between lets you specify minimum and maximum boundaries for numerical ranges.' }
         }
@@ -344,7 +356,7 @@ const topicsData = [
     slug: 'excel-conditional-formatting-5936',
     summary: { en: 'Format cells dynamically using colors, scales, data bars, and formulas based on cell values.' },
     keyPoints: [
-      'Conditional Formatting changes a cell\'s appearance (fill, text color, borders) based on conditions.',
+      'Conditional Formatting changes a cell\'s appearance based on conditions.',
       'Visual cues like Data Bars and Color Scales highlight trends instantly.',
       'Custom formula rules allow you to format entire rows based on a single cell\'s value.'
     ],
@@ -357,53 +369,59 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>Conditional Formatting applies text formatting, borders, and fills automatically based on criteria you set. It transforms dry sheets into color-coded dashboards.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Common Visual Cues</h3>
-  <ul class="list-disc pl-6 space-y-2 text-sm text-slate-700">
-    <li><strong>Highlight Cells Rules</strong>: Colors cells greater than, less than, or equal to a value. Example: Red text for negative numbers.</li>
-    <li><strong>Data Bars</strong>: Inserts a horizontal bar chart directly inside the cell representing its relative magnitude.</li>
-    <li><strong>Color Scales</strong>: Applies a two or three-color gradient (like green to red) to represent hot, medium, and cold numbers.</li>
-  </ul>
-  
-  <div class="my-6 p-5 border border-amber-100 bg-amber-50/50 rounded-2xl">
-    <h4 class="font-bold text-amber-900">Best Practice: Precedence Rules</h4>
-    <p class="text-sm text-slate-700 mt-1">If you have multiple rules (e.g. highlighting values >100 in green, and values >200 in blue), Excel checks rules from top to bottom in the **Rules Manager**. Ensure your most specific rule (e.g., >200) is placed at the top of the list!</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart warehouse managers are overlooking negative profit transactions, causing financial leaks. You need to alert them visually whenever profit goes below zero.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Select the Profit column (G). In Conditional Formatting, select "Highlight Cells Rules" -> "Less Than", type 0, and choose "Light Red Fill with Dark Red Text".</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Apply a Green-to-Red Color Scale on the Quantity column to immediately spot orders with massive quantities.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Configure a custom formula-based formatting rule to fill the entire row with a light blue background if the customer is marked as "VIP" in column H.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write the exact formula rule used to highlight rows where column H equals "VIP". Hint: <code>=$H2="VIP"</code> (note the absolute column lock).</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Export your color-coded table. Save a screenshot inside your electromart-analytics docs folder as proof of your UI dashboard styling skills.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Conditional Formatting Quiz' },
-      description: { en: 'Check your knowledge on rule orders and formatting applications.' },
+      description: { en: 'Check formatting rules.' },
       questions: [
         {
           text: { en: 'What is the primary function of Data Bars in Conditional Formatting?' },
-          options: [
-            { en: 'To delete small numbers.' },
-            { en: 'To display horizontal bars inside cells to visualize their relative sizes.' },
-            { en: 'To change cell width automatically.' },
-            { en: 'To insert column charts on separate sheets.' }
-          ],
+          options: [{ en: 'To delete small numbers.' }, { en: 'To display horizontal bars inside cells to visualize their relative sizes.' }, { en: 'To change cell width automatically.' }, { en: 'To insert column charts on separate sheets.' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Data Bars draw in-cell bar visuals, comparing values in the range without taking up separate chart space.' }
         },
         {
           text: { en: 'How are rules resolved if multiple Conditional Formatting rules match the same cell?' },
-          options: [
-            { en: 'The last rule added is used.' },
-            { en: 'They merge, but if they conflict, the top rule in the rules list wins.' },
-            { en: 'The cell turns black to show an error.' },
-            { en: 'Excel picks one at random.' }
-          ],
+          options: [{ en: 'The last rule added is used.' }, { en: 'They merge, but if they conflict, the top rule wins.' }, { en: 'The cell turns black.' }, { en: 'Excel picks one at random.' }],
           correctAnswerIndex: 1,
-          explanation: { en: 'Rules are evaluated in order of priority. The top rule in the Conditional Formatting Rules Manager takes precedence in conflicts.' }
+          explanation: { en: 'Rules are evaluated in order of priority. The top rule in the Conditional Formatting Rules Manager takes precedence.' }
         },
         {
           text: { en: 'Which feature color-codes cells using a gradient based on value scales?' },
-          options: [
-            { en: 'Icon Sets' },
-            { en: 'Color Scales' },
-            { en: 'Data Validation' },
-            { en: 'Custom Filters' }
-          ],
+          options: [{ en: 'Icon Sets' }, { en: 'Color Scales' }, { en: 'Data Validation' }, { en: 'Custom Filters' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Color Scales use continuous gradients (like heatmaps) to visualize numerical spreads.' }
         }
@@ -420,46 +438,50 @@ const topicsData = [
     ],
     notes: [
       'Data Validation only prevents future invalid entries; it does not retroactively fix existing errors.',
-      'You can use the \'Circle Invalid Data\' tool to highlight existing records that violate your validation rules.'
+      'You can use the \'Circle Invalid Data\' tool to highlight existing records.'
     ],
     resources: [
       { title: 'Excel Data Validation Tutorial', url: 'https://www.contextures.com/' }
     ],
     contentHtml: `<div class="space-y-6">
   <p>To perform accurate analysis, you need clean data. **Data Validation** restricts the type of values or text that users can type into specific cells, preventing bad data from entering your sheets.</p>
-  
-  <blockquote>
-    "Data Validation acts as a guard dog for your spreadsheet, rejecting typos, text in date fields, or numbers outside logical boundaries."
-  </blockquote>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Validation Criteria Options</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>List (Dropdowns)</strong>
-      <p class="text-xs text-slate-600 mt-1">Forces choices from a predefined list (e.g. Sales, Marketing, HR).</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart data entry operators are typing inconsistent region names (e.g. "North", "N. America", "NA"). You must enforce a strict dropdown list showing only valid region codes.</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Whole Number / Decimal</strong>
-      <p class="text-xs text-slate-600 mt-1">Restricts numbers within boundaries (e.g. integer between 1 and 100).</p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Create a dropdown validation list in column I. Restrict entries to: "North America, Europe, Asia Pacific, Latin America".</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Date / Time</strong>
-      <p class="text-xs text-slate-600 mt-1">Restricts inputs to valid date/time boundaries.</p>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Configure data validation rules in the Quantity column to only allow integers between 1 and 100. Enter an input helper message: "Enter integer between 1 and 100".</p>
     </div>
-    <div class="p-4 bg-slate-50 border rounded-xl">
-      <strong>Text Length</strong>
-      <p class="text-xs text-slate-600 mt-1">Restricts character limits (e.g. phone numbers must be exactly 10 digits).</p>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a customer feedback rating cell. Restrict entries to whole numbers from 1 to 5, and customize a strict warning error message when invalid scores are entered.</p>
     </div>
-  </div>
-  
-  <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-800 my-4">
-    <h4 class="font-bold">Warning: Retroactive Entries</h4>
-    <p class="text-sm">Data validation rules are only triggered when a user edits or types into a cell. Applying data validation to cells that already contain invalid values will not clean them automatically. You must use <strong>Circle Invalid Data</strong> on the Data tab to locate pre-existing errors.</p>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">What happens when a user attempts to paste invalid data from another source into a cell protected by validation? Does Excel block it?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Save your workbook configuration. Document the validation rules and dropdown constraints inside your project proposal docs.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Data Validation Quiz' },
-      description: { en: 'Test your understanding of data input rules.' },
+      description: { en: 'Test validation settings.' },
       questions: [
         {
           text: { en: 'Which criteria option in Data Validation is used to create dropdown menus?' },
@@ -488,69 +510,70 @@ const topicsData = [
     keyPoints: [
       'Removing duplicates cleanses datasets by ensuring every row contains unique key data.',
       'You can select specific columns to define what constitutes a duplicate record.',
-      'Excel provides a summary pop-up showing how many duplicates were removed and how many unique values remain.'
+      'Excel provides a summary pop-up showing how many duplicates were removed.'
     ],
     notes: [
-      'Excel permanently deletes duplicate rows. Always save a backup copy of your worksheet first!',
-      'Removing duplicates is case-insensitive (e.g. \'ADMIN\' and \'admin\' are duplicates).'
+      'Excel permanently deletes duplicate rows. Always save a backup copy first!',
+      'Removing duplicates is case-insensitive.'
     ],
     resources: [
       { title: 'Deduplication in Excel', url: 'https://support.microsoft.com/' }
     ],
     contentHtml: `<div class="space-y-6">
   <p>Duplicate records lead to skewed averages, inflated sums, and dirty analysis. Excel provides a direct deduplication tool to clean your ranges in one click.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">How Excel Evaluates Duplicates</h3>
-  <p>When you select a table and run the **Remove Duplicates** tool, you can select which columns Excel should compare:</p>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-    <div class="p-4 border rounded-xl bg-slate-50">
-      <strong>Select All Columns</strong>
-      <p class="text-xs text-slate-600 mt-1">Excel only deletes a row if the values across <strong>every single column</strong> are identical to another row.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">The ElectroMart sales dataset contains double-recorded clicks due to server lag. This inflates total sales count. You need to purge these duplicate transactions.</p>
     </div>
-    <div class="p-4 border rounded-xl bg-slate-50">
-      <strong>Select Key Column (e.g. Email / ID)</strong>
-      <p class="text-xs text-slate-600 mt-1">Excel deletes duplicate rows based on that single column, even if other column values differ.</p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Select the entire e-commerce transactions table. Click Data -> Remove Duplicates, select only the <code>Transaction_ID</code> column, and execute.</p>
     </div>
-  </div>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">Pro Tip: Deduping is Case-Insensitive</h4>
-    <p class="text-sm">Excel treats capitalized and lowercase text as matching. If you have "john@company.com" and "JOHN@company.com", Excel will flag them as duplicates and remove the second row.</p>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Run the Remove Duplicates check by selecting both <code>Customer_Name</code> and <code>Order_Date</code>. Observe how many rows are categorized as duplicate.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Extract a clean, unique list of all unique customer names from column B. Place this unique customer directory on a separate worksheet named "Unique_Customers".</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">What Excel function (Excel 365/2021) can extract unique values dynamically as a formula instead of using the Data tab tool? Hint: <code>=UNIQUE()</code>.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Add a new file <code>DEDUPLICATION_LOG.md</code> in your electromart-analytics repository. Record the number of duplicate transactions purged and unique records saved.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Removing Duplicates Quiz' },
-      description: { en: 'Test your understanding of the deduplication process.' },
+      description: { en: 'Test deduplication.' },
       questions: [
         {
           text: { en: 'What does Excel do to duplicate rows when you execute the Remove Duplicates command?' },
-          options: [
-            { en: 'It highlights them in red.' },
-            { en: 'It permanently deletes them.' },
-            { en: 'It moves them to a separate worksheet.' },
-            { en: 'It hides them from view.' }
-          ],
+          options: [{ en: 'It highlights them in red.' }, { en: 'It permanently deletes them.' }, { en: 'It moves them to a separate worksheet.' }, { en: 'It hides them from view.' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Remove Duplicates permanently purges duplicate rows from the spreadsheet. Always keep backups.' }
         },
         {
           text: { en: 'Is Excel\'s duplicate removal process case-sensitive?' },
-          options: [
-            { en: 'Yes, it treats different casings as separate entries.' },
-            { en: 'No, it treats "ABC" and "abc" as identical.' }
-          ],
+          options: [{ en: 'Yes, it treats different casings as separate entries.' }, { en: 'No, it treats "ABC" and "abc" as identical.' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Deduplication is case-insensitive in Excel, matching identical letters regardless of casing.' }
         },
         {
           text: { en: 'What happens if you run Remove Duplicates selecting only the "Customer ID" column inside a multi-column table?' },
-          options: [
-            { en: 'Only rows with identical values in every column are deleted.' },
-            { en: 'Any row with a duplicate Customer ID is deleted, regardless of differing data in other columns.' },
-            { en: 'The Customer ID column is deleted.' },
-            { en: 'An error occurs.' }
-          ],
+          options: [{ en: 'Only rows with identical values in every column are deleted.' }, { en: 'Any row with a duplicate Customer ID is deleted, regardless of differing data.' }, { en: 'The Customer ID column is deleted.' }, { en: 'An error occurs.' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Deduplicating on a key column treats any rows sharing that key value as duplicates, keeping only the first occurrence.' }
         }
@@ -563,11 +586,11 @@ const topicsData = [
     keyPoints: [
       'VLOOKUP searches vertically in the first column of a table and moves right to return values.',
       'HLOOKUP performs lookups horizontally across the first row and moves down.',
-      'INDEX & MATCH combined bypasses VLOOKUP limitations by enabling leftward lookups and dynamic column adjustments.'
+      'INDEX & MATCH combined bypasses VLOOKUP limitations by enabling leftward lookups.'
     ],
     notes: [
-      'Set VLOOKUP\'s fourth argument to FALSE for exact matches. Using TRUE can return incorrect close matches.',
-      'INDEX returns the value of a cell at a specific coordinate; MATCH returns the row or column index of a matching value.'
+      'Set VLOOKUP\'s fourth argument to FALSE for exact matches.',
+      'INDEX returns the value of a cell at a specific coordinate; MATCH returns the row index.'
     ],
     resources: [
       { title: 'INDEX MATCH vs VLOOKUP Guide', url: 'https://exceljet.net/' }
@@ -577,25 +600,47 @@ const topicsData = [
   
   <h3 class="text-xl font-bold mt-6 mb-3">VLOOKUP Syntax</h3>
   <pre><code>=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</code></pre>
-  
-  <div class="p-4 bg-slate-50 border rounded-xl space-y-2 text-sm">
-    <div><strong>lookup_value</strong>: The value you want to search for (e.g. Employee ID in A2).</div>
-    <div><strong>table_array</strong>: The reference table where data lives (e.g. $F$1:$H$20). Use absolute references ($) so it does not shift.</div>
-    <div><strong>col_index_num</strong>: The column number in the reference table to return (1-indexed).</div>
-    <div><strong>range_lookup</strong>: Use <code>FALSE</code> (or <code>0</code>) for exact match. This is highly recommended!</div>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart has order logs in one sheet, but customer profiles (VIP status, address) are stored in another sheet. You need to pull VIP categories into your sales records.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write a <code>=VLOOKUP()</code> formula to search for Customer_ID in the profile directory and pull the Customer_Type (VIP or Standard) into column H of your sales sheet.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Create a formula using <code>=INDEX(..., MATCH(...))</code> to retrieve the Customer Email (stored to the left of Customer Name in the profile sheet) for the transaction row.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Build an interactive order lookup form block. A user can type a Transaction_ID in cell K2, and formulas below will pull the Customer Name, Sales value, and shipping status dynamically.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">If VLOOKUP returns an <code>#N/A</code> error because the ID is missing, what function can wrap VLOOKUP to show "ID Not Found" instead of the error code? Hint: <code>=IFERROR()</code>.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Document the lookup schema inside a <code>DATA_CONNECTIONS.md</code> file in your electromart-analytics portfolio folder.</p>
+    </div>
   </div>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">INDEX & MATCH</h3>
-  <p>While VLOOKUP is simple, it can only search columns from left to right. To look up columns to the left, combine **INDEX** and **MATCH**:</p>
-  <pre><code>=INDEX(return_column, MATCH(lookup_value, search_column, 0))</code></pre>
 </div>`,
     quiz: {
       title: { en: 'Lookup Functions Quiz' },
-      description: { en: 'Validate your understanding of lookup arguments and limitations.' },
+      description: { en: 'Validate VLOOKUP logic.' },
       questions: [
         {
           text: { en: 'Which parameter should you pass as the fourth argument of VLOOKUP to force an exact match?' },
-          options: [{ en: 'TRUE' }, [{ en: 'FALSE' }], { en: '0' }, { en: 'Either FALSE or 0' }],
+          options: [{ en: 'TRUE' }, { en: 'FALSE' }, { en: '0' }, { en: 'Either FALSE or 0' }],
           correctAnswerIndex: 3,
           explanation: { en: 'Both FALSE and 0 instruct Excel to look for an exact match. Using TRUE or 1 allows approximate matches, which can lead to calculation errors.' }
         },
@@ -631,37 +676,49 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>Data imported from external servers often needs cleaning. Text functions allow you to slice strings, merge columns, and isolate character codes.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Extraction Functions</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-    <div class="p-4 border rounded-xl bg-slate-50">
-      <strong>=LEFT(text, num_chars)</strong>
-      <p class="text-xs text-slate-600 mt-1">Extracts from start. Example: <code>=LEFT("EXCEL", 2)</code> returns <strong>"EX"</strong>.</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">The ElectroMart dataset stores product serial numbers in a single column containing the Product SKU, Warehouse Code, and Date Code separated by dashes (e.g. "TEC-LA-2026"). You need to extract just the Warehouse Code.</p>
     </div>
-    <div class="p-4 border rounded-xl bg-slate-50">
-      <strong>=RIGHT(text, num_chars)</strong>
-      <p class="text-xs text-slate-600 mt-1">Extracts from end. Example: <code>=RIGHT("EXCEL", 3)</code> returns <strong>"CEL"</strong>.</p>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write a formula using <code>=MID(A2, 5, 2)</code> to pull out the 2-letter Warehouse Code from the serial numbers in cell A2.</p>
     </div>
-    <div class="p-4 border rounded-xl bg-slate-50">
-      <strong>=MID(text, start_num, num_chars)</strong>
-      <p class="text-xs text-slate-600 mt-1">Extracts from middle. Example: <code>=MID("EXCEL", 2, 3)</code> returns <strong>"XCE"</strong>.</p>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">If Customer Name in column B contains both First Name and Last Name separated by a space, write a formula to join "Dear " with their First Name using the <code>&</code> operator.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a full mailing list column. Use concatenation to combine Customer Name, " | ", City, and Country into a clean mailing address block.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write an Excel formula to pull the first 3 characters of the Customer Name in cell B2, capitalize them, and append "-MEMBER". Hint: <code>=UPPER(LEFT(B2, 3)) & "-MEMBER"</code>.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Save your formulas sheet. Document how you cleaned product codes and customer labels in your electromart-analytics docs.</p>
     </div>
   </div>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Joining Strings</h3>
-  <p>To join values from different cells, you can use the **CONCAT** function or the simpler ampersand <code>&</code> operator:</p>
-  <pre><code>=A2 & " " & B2</code></pre>
-  <p class="text-xs text-slate-500">If A2 contains "John" and B2 contains "Doe", this outputs <strong>"John Doe"</strong>.</p>
 </div>`,
     quiz: {
       title: { en: 'Text Functions Quiz' },
-      description: { en: 'Test your understanding of substring extraction and string joins.' },
+      description: { en: 'Test text formulas.' },
       questions: [
         {
           text: { en: 'If cell A1 contains "ID-5920", which formula returns the numeric part "5920"?' },
           options: [{ en: '=LEFT(A1, 4)' }, { en: '=RIGHT(A1, 4)' }, { en: '=MID(A1, 3, 4)' }, { en: 'Both =RIGHT(A1, 4) and =MID(A1, 4, 4)' }],
           correctAnswerIndex: 1,
-          explanation: { en: 'RIGHT(A1, 4) starts from the rightmost character and pulls 4 characters, giving "5920". (MID(A1, 4, 4) would pull from index 4, giving "5920" as well, but A1 start indices are 1-based, making the M index 4 "5920" incorrect).' }
+          explanation: { en: 'RIGHT(A1, 4) starts from the rightmost character and pulls 4 characters, giving "5920".' }
         },
         {
           text: { en: 'What does the ampersand (&) operator do in Excel formulas?' },
@@ -700,22 +757,43 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>The **IF** function is the core decision-making tool in Excel. It evaluates whether a condition is met, returning different outputs depending on the outcome.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">IF Function Syntax</h3>
-  <pre><code>=IF(logical_test, value_if_true, value_if_false)</code></pre>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Nested IFs</h3>
-  <p>When you have multiple thresholds, you can nest IF functions inside each other:</p>
-  <pre><code>=IF(A2>=90, "Grade A", IF(A2>=75, "Grade B", "Grade C"))</code></pre>
-  
-  <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800 my-4">
-    <h4 class="font-bold">Newer Alternative: IFS</h4>
-    <p class="text-sm">In modern Excel (2016+), you can use the <strong>IFS</strong> function to avoid nesting: <code>=IFS(A2>=90, "Grade A", A2>=75, "Grade B", TRUE, "Grade C")</code>. It evaluates arguments in order without parentheses overload!</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart wants to classify transactions as "High Value" if the purchase amount is greater than $500. This tag will determine support priorities.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write an <code>=IF()</code> formula in column J: <code>=IF(F2>500, "High Value", "Standard")</code> to tag each row based on Sales in column F.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Use nested IFs to categorize shipping priority: if Shipping_Region is "Europe" or "North America", priority is "Express", otherwise "Standard".</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a conditional discount calculation column. If customer type is "VIP" and quantity is > 5, apply a 15% discount, else 0%.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write the exact logical formula combining AND: <code>=IF(AND(H2="VIP", E2>5), 0.15, 0)</code>. Test this in column K.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Document your pricing logic rules inside a new file <code>BUSINESS_RULES.md</code> inside your git repository.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'IF Function Quiz' },
-      description: { en: 'Verify logical routing and statement structures.' },
+      description: { en: 'Verify logical routing.' },
       questions: [
         {
           text: { en: 'If cell A1 contains 85, what does =IF(A1>=90, "A", IF(A1>=80, "B", "C")) return?' },
@@ -755,23 +833,46 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>Timestamps and dates are standard in business data. Excel provides date functions to calculate durations, ages, and timelines.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Internal Date Storage</h3>
-  <p>Excel does not internally store dates as "MM/DD/YYYY". Instead, it converts them to <strong>sequential serial numbers</strong>. January 1, 1900, is stored as <code>1</code>. January 1, 2026, is stored as <code>46023</code>. This allows for direct mathematical subtraction and addition!</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Key Date Functions</h3>
-  <ul class="list-disc pl-6 space-y-2 text-sm text-slate-700">
-    <li><code>=TODAY()</code>: Returns the current date (volatile, updates every recalculation).</li>
-    <li><code>=YEAR(date)</code>, <code>=MONTH(date)</code>, <code>=DAY(date)</code>: Extracts corresponding portions from a date cell.</li>
-    <li><code>=DATEDIF(start_date, end_date, unit)</code>: Calculates intervals. Use <code>"Y"</code> for years, <code>"M"</code> for months, or <code>"D"</code> for days.</li>
-  </ul>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart customers are complaining about slow shipping. You need to calculate the exact shipping delay (Ship_Date minus Order_Date) for every transaction to spot bottlenecks.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Write a formula in column L: <code>=D2-C2</code> (assuming D2 is Ship_Date and C2 is Order_Date) to calculate elapsed delivery days. Set column formatting to Number.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Use <code>=YEAR(C2)</code> and <code>=MONTH(C2)</code> to extract the transaction year and month indices into columns M and N to enable seasonal reporting.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Build a shipping latency report. Calculate average shipping delay for ElectroMart across regions, highlighting regions exceeding 5 days.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Write a formula using DATEDIF to calculate how many full months have elapsed since an order was placed compared to the current date today (<code>=TODAY()</code>).</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Document average shipping latencies by region in your proposal. Highlight how shipping delays affect customer review scores.</p>
+    </div>
+  </div>
 </div>`,
     quiz: {
       title: { en: 'Date Functions Quiz' },
-      description: { en: 'Verify your understanding of Excel date logic and calculations.' },
+      description: { en: 'Verify Excel date calculations.' },
       questions: [
         {
-          text: { en: 'How does Excel store the date January 1, 1900 internally?' },
+          text: { en: 'How does Excel internally represent dates?' },
           options: [{ en: '0' }, { en: '1' }, { en: '19000101' }, { en: '01-Jan-1900' }],
           correctAnswerIndex: 1,
           explanation: { en: 'Excel serializes dates starting with January 1, 1900 as number 1. Every day after adds 1 to the serial number.' }
@@ -806,42 +907,50 @@ const topicsData = [
     ],
     notes: [
       'Pivot tables do not automatically update when source data changes. You must right-click and click \'Refresh\'.',
-      'Ensure your source data has header titles on every column and no empty columns.'
+      'Ensure your source data has header titles on every column.'
     ],
     resources: [
       { title: 'Pivot Table Basics', url: 'https://exceljet.net/' }
     ],
     contentHtml: `<div class="space-y-6">
   <p>A **Pivot Table** is Excel's most powerful summarizing tool. It lets you extract insights from large tables without writing a single formula.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">The Four Pivot Fields</h3>
-  <div class="grid grid-cols-2 gap-4 text-sm font-bold text-center">
-    <div class="p-4 border rounded-xl bg-blue-50 text-blue-900">
-      Filters
-      <span class="block text-xs font-normal text-slate-500 mt-1">Filters the entire dataset.</span>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart has thousands of rows of cleaned order data. You need to present total revenue by product category and region to investors next hour.</p>
     </div>
-    <div class="p-4 border rounded-xl bg-emerald-50 text-emerald-900">
-      Columns
-      <span class="block text-xs font-normal text-slate-500 mt-1">Arranges categories horizontally.</span>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Insert a Pivot Table. Drag "Category" into the Rows field, "Region" into the Columns field, and "Sales" into the Values field (formatted as Sum).</p>
     </div>
-    <div class="p-4 border rounded-xl bg-purple-50 text-purple-900">
-      Rows
-      <span class="block text-xs font-normal text-slate-500 mt-1">Arranges categories vertically.</span>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Double click on the total sales cell for the "Technology" row. What happens to your worksheet? (Hint: Excel extracts details to a new sheet).</p>
     </div>
-    <div class="p-4 border rounded-xl bg-amber-50 text-amber-900">
-      Values
-      <span class="block text-xs font-normal text-slate-500 mt-1">Numerical metrics calculated (Sum, Average).</span>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Create a Pivot Table report summarizing average shipping delays across various customer tiers (VIP vs Standard).</p>
     </div>
-  </div>
-  
-  <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-800 my-4">
-    <h4 class="font-bold">⚠️ Pivot Tables Are Not Live!</h4>
-    <p class="text-sm">When you edit your source table, Pivot Tables do **not** automatically update their totals. You must right-click anywhere inside the Pivot Table and select <strong>Refresh</strong> to recalculate.</p>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Change the Value Field settings for Sales from "Sum" to "% of Column Total" or "% of Grand Total". Observe the breakdown.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Add your pivot tables summaries (converted to clean tables) inside your electromart-analytics docs folder under a section named <code>Sales Summary Reports</code>.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Pivot Tables Quiz' },
-      description: { en: 'Test your understanding of pivot fields and updates.' },
+      description: { en: 'Test pivot table basics.' },
       questions: [
         {
           text: { en: 'How do you update a Pivot Table after modifying the underlying source table?' },
@@ -891,45 +1000,43 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>Charts represent numerical data visually, helping stakeholders spot trends and outliers in seconds.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Chart Types & Use Cases</h3>
-  <div class="overflow-x-auto border border-slate-200 rounded-2xl text-sm">
-    <table class="min-w-full divide-y divide-slate-200">
-      <thead class="bg-slate-50">
-        <tr>
-          <th class="px-4 py-3 text-left font-bold">Chart Type</th>
-          <th class="px-4 py-3 text-left font-bold">Analytical Purpose</th>
-          <th class="px-4 py-3 text-left font-bold">Example</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-200 bg-white">
-        <tr>
-          <td class="px-4 py-3 font-semibold">Column / Bar</td>
-          <td class="px-4 py-3 text-slate-700">Comparing discrete category values.</td>
-          <td class="px-4 py-3 text-slate-700">Sales by Product Type.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-semibold">Line</td>
-          <td class="px-4 py-3 text-slate-700">Displaying trends over time.</td>
-          <td class="px-4 py-3 text-slate-700">Monthly Website Traffic.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-semibold">Pie</td>
-          <td class="px-4 py-3 text-slate-700">Visualizing parts-of-a-whole shares.</td>
-          <td class="px-4 py-3 text-slate-700">Market Share distribution.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-semibold">Scatter</td>
-          <td class="px-4 py-3 text-slate-700">Showing relationship between two numeric metrics.</td>
-          <td class="px-4 py-3 text-slate-700">Advertising Spend vs Sales Revenue.</td>
-        </tr>
-      </tbody>
-    </table>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart directors want to visually contrast sales trends against profit margins across different quarters to identify high-overhead seasons.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Build a clustered column chart comparing Sales across Product Categories. Format the chart with a clean, flat color palette.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Select both Sales and Profit columns and insert a Dual-Axis Chart. Represent Sales as Columns and Profit Margin as a Line on a secondary axis.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Design a trend monitoring sheet. Create a Line Chart plotting monthly order volume over the last 12 months, removing default gridlines for neat styling.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Add trendlines to your scatter plots. What is the R-squared value on the correlation between discount percentages and net profit?</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Save your formatted sales charts as image files. Add them directly into your portfolio documents under a section named <code>Visual Performance Reports</code>.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Charts Quiz' },
-      description: { en: 'Verify chart selection and design guidelines.' },
+      description: { en: 'Verify chart structures.' },
       questions: [
         {
           text: { en: 'Which chart type is best for showing how sales changed month-over-month over the past year?' },
@@ -946,7 +1053,7 @@ const topicsData = [
             { en: 'When comparing names alphabetically.' }
           ],
           correctAnswerIndex: 1,
-          explanation: { en: 'Dual-axis charts combine columns and lines with secondary Y-axes to show related metrics on differing scales (e.g. Sales in Millions and Growth in %).' }
+          explanation: { en: 'Dual-axis charts combine columns and lines with secondary Y-axes to show related metrics on differing scales.' }
         },
         {
           text: { en: 'Which chart type is best to demonstrate correlation between two numeric variables (e.g., Temperature and Ice Cream Sales)?' },
@@ -974,22 +1081,43 @@ const topicsData = [
     ],
     contentHtml: `<div class="space-y-6">
   <p>A **Dashboard** pulls all key data analytics components (KPIs, Charts, Pivot Tables, Filters) together on a single screen so business managers can make rapid decisions.</p>
-  
-  <h3 class="text-xl font-bold mt-6 mb-3">Key Dashboard Components</h3>
-  <ul class="list-disc pl-6 space-y-2 text-sm text-slate-700">
-    <li><strong>KPI Blocks</strong>: Highlight cells displaying crucial business metrics (e.g. total profit) in oversized fonts.</li>
-    <li><strong>Pivot Charts</strong>: Visual charts linked to Pivot Tables that adjust dynamically as filters shift.</li>
-    <li><strong>Slicers</strong>: Interactive, visual buttons that allow users to filter reports without digging into drop-down menus.</li>
-  </ul>
-  
-  <div class="my-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-800">
-    <h4 class="font-bold">Pro Tip: Report Connections</h4>
-    <p class="text-sm">By default, a slicer only filters the specific Pivot Table it was created from. Right-click the slicer, choose <strong>Report Connections</strong>, and check all Pivot Tables on your sheet to link them. Now, one click updates the entire dashboard!</p>
+
+  <!-- PBL Elements -->
+  <div class="space-y-4 border-t border-slate-200 pt-6">
+    <div class="p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900">
+      <h4 class="font-bold">💼 Real-world Scenario</h4>
+      <p class="text-sm">ElectroMart directors request an interactive operational control sheet. Slicers should allow filtering the whole screen by Region and Category in real-time.</p>
+    </div>
+
+    <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl text-purple-900">
+      <h4 class="font-bold">🛠️ Practical Task</h4>
+      <p class="text-sm">Layout your dashboard worksheet. Position 3 KPI cards at the top, two Pivot Charts in the middle, and 2 Slicers (Region, Category) on the left panel.</p>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900">
+      <h4 class="font-bold">📊 Dataset Exercise</h4>
+      <p class="text-sm">Link your Slicers using Report Connections to all Pivot Tables in the workbook. Verify that clicking "Europe" updates both charts instantly.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl text-blue-900">
+      <h4 class="font-bold">🚀 Mini Project</h4>
+      <p class="text-sm">Build a fully functional management sales dashboard from the ElectroMart CSV. Clean gridlines, lock reference ranges, and standardize colors.</p>
+    </div>
+
+    <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900">
+      <h4 class="font-bold">🧩 Coding Challenge</h4>
+      <p class="text-sm">Design a reset button. How can a user clear all active slicer filters instantly in one click? Hint: Click the "Clear Filter" icon at the top right of the Slicer box.</p>
+    </div>
+
+    <div class="p-4 bg-slate-50 border-l-4 border-slate-500 rounded-r-xl text-slate-900">
+      <h4 class="font-bold">📁 Portfolio Task</h4>
+      <p class="text-sm">Commit your final <code>electromart_raw_data.xlsx</code> containing the interactive dashboard to your git repository. Add dashboard usage instructions in your README.</p>
+    </div>
   </div>
 </div>`,
     quiz: {
       title: { en: 'Dashboards Quiz' },
-      description: { en: 'Test your understanding of dashboard design and connectivity.' },
+      description: { en: 'Test dashboard rules.' },
       questions: [
         {
           text: { en: 'What does "Report Connections" on a Slicer allow you to do?' },

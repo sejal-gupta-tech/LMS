@@ -394,9 +394,14 @@ export default function CourseDetailPage() {
                   </button>
                 </div>
               ) : (
-                <div className="aspect-video rounded-2xl bg-slate-900 mb-8 flex items-center justify-center relative overflow-hidden group">
-                   <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors" />
-                   <PlayCircle size={64} className="text-white relative z-10" />
+                <div className="aspect-video rounded-2xl bg-slate-900 mb-8 overflow-hidden relative shadow-md">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/NWsU7lRAGr8"
+                    title="Course Intro Video"
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
               )}
               

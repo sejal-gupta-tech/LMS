@@ -136,18 +136,18 @@ export const QuizComponent: React.FC<QuizProps> = ({ quizId, title, questions, p
               Review the key ideas from this lesson, answer the questions one by one, and get a clear pass/fail result at the end.
             </p>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.25em] text-white/45">Questions</p>
-                <p className="mt-2 text-2xl font-black">{questions.length}</p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <div className="flex-1 min-w-[70px] rounded-xl border border-white/10 bg-white/5 px-2 py-3 flex flex-col justify-center items-center">
+                <p className="text-[9px] font-black uppercase tracking-wider text-white/50 text-center">Questions</p>
+                <p className="mt-1.5 text-lg font-black text-white text-center">{questions.length}</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.25em] text-white/45">Passing</p>
-                <p className="mt-2 text-2xl font-black">{passingMarks}%</p>
+              <div className="flex-1 min-w-[70px] rounded-xl border border-white/10 bg-white/5 px-2 py-3 flex flex-col justify-center items-center">
+                <p className="text-[9px] font-black uppercase tracking-wider text-white/50 text-center">Passing</p>
+                <p className="mt-1.5 text-lg font-black text-white text-center">{passingMarks}%</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.25em] text-white/45">Mode</p>
-                <p className="mt-2 text-2xl font-black">Demo</p>
+              <div className="flex-1 min-w-[70px] rounded-xl border border-white/10 bg-white/5 px-2 py-3 flex flex-col justify-center items-center">
+                <p className="text-[9px] font-black uppercase tracking-wider text-white/50 text-center">Mode</p>
+                <p className="mt-1.5 text-xs font-black uppercase tracking-wider text-cyan-400 text-center">Demo</p>
               </div>
             </div>
 
@@ -349,18 +349,18 @@ export const QuizComponent: React.FC<QuizProps> = ({ quizId, title, questions, p
               <span className="font-bold text-slate-950">{result.total}</span> questions.
             </p>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Score</p>
-                <p className="mt-2 text-2xl font-black text-slate-950">{result.score}/{result.total}</p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <div className="flex-1 min-w-[70px] rounded-xl border border-slate-200 bg-white px-2 py-3 flex flex-col justify-center items-center shadow-sm">
+                <p className="text-[9px] font-black uppercase tracking-wider text-slate-500 text-center">Score</p>
+                <p className="mt-1.5 text-lg font-black text-slate-950 text-center">{result.score}/{result.total}</p>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Passing</p>
-                <p className="mt-2 text-2xl font-black text-slate-950">{passingMarks}%</p>
+              <div className="flex-1 min-w-[70px] rounded-xl border border-slate-200 bg-white px-2 py-3 flex flex-col justify-center items-center shadow-sm">
+                <p className="text-[9px] font-black uppercase tracking-wider text-slate-500 text-center">Passing</p>
+                <p className="mt-1.5 text-lg font-black text-slate-950 text-center">{passingMarks}%</p>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Attempts</p>
-                <p className="mt-2 text-2xl font-black text-slate-950">1</p>
+              <div className="flex-1 min-w-[70px] rounded-xl border border-slate-200 bg-white px-2 py-3 flex flex-col justify-center items-center shadow-sm">
+                <p className="text-[9px] font-black uppercase tracking-wider text-slate-500 text-center">Attempts</p>
+                <p className="mt-1.5 text-lg font-black text-slate-950 text-center">1</p>
               </div>
             </div>
 
