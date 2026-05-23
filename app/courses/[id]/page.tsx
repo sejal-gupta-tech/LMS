@@ -253,9 +253,9 @@ export default function CourseDetailPage() {
               ) : (
                 <div className="rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-blue-500/20 to-cyan-400/10 p-6 shadow-2xl shadow-black/20">
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/45">Course spotlight</p>
-                  <p className="mt-3 text-2xl font-black leading-tight">AI & Machine Learning</p>
+                  <p className="mt-3 text-2xl font-black leading-tight">Data Science</p>
                   <p className="mt-4 text-sm leading-7 text-slate-300">
-                    Explore AI foundations, practical machine learning examples, and demo-ready learning content.
+                    Explore data science foundations, practical data analysis examples, and demo-ready learning content.
                   </p>
                 </div>
               )}

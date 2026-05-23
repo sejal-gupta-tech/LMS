@@ -248,11 +248,16 @@ export default function LessonLearningPage() {
           setCourse(resolvedCourse || null);
           setLesson(resolvedLesson);
           setTopics(nextTopics);
-          setActiveTopicId(nextTopics[0]?._id ?? null);
+          
+          const activeTopicFromParams = params.topicSlug
+            ? nextTopics.find((t) => t.slug === params.topicSlug || t._id === params.topicSlug)
+            : null;
+          setActiveTopicId(activeTopicFromParams?._id ?? nextTopics[0]?._id ?? null);
+          
           setLessonQuiz(nextQuiz);
           setShowQuiz(false);
 
-          if (isLegacyRoute && resolvedCourse?.slug && resolvedLesson?.slug) {
+          if (isLegacyRoute && resolvedCourse?.slug && resolvedLesson?.slug && !params.topicSlug) {
             router.replace(
               getLocalePath(locale, `/courses/${resolvedCourse.slug}/${resolvedLesson.slug}`)
             );
@@ -303,6 +308,16 @@ export default function LessonLearningPage() {
     if (!topics.length) return null;
     return topics.find((topic) => topic._id === activeTopicId) || topics[0];
   }, [activeTopicId, topics]);
+
+  useEffect(() => {
+    if (activeTopic && activeTopic.slug && course?.slug && lesson?.slug) {
+      const targetPath = `/courses/${course.slug}/${lesson.slug}/${activeTopic.slug}`;
+      const expectedPath = getLocalePath(locale, targetPath);
+      if (pathname !== expectedPath) {
+        window.history.replaceState(null, '', expectedPath);
+      }
+    }
+  }, [activeTopic, course?.slug, lesson?.slug, locale, pathname]);
 
   const currentTopicIndex = topics.findIndex((topic) => topic._id === activeTopic?._id);
   const nextTopic = currentTopicIndex >= 0 ? topics[currentTopicIndex + 1] : null;

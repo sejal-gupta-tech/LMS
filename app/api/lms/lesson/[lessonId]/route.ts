@@ -3,9 +3,9 @@ import { dbConnect } from '@/lib/dbConnect';
 import { getRequestedLocale } from '@/modules/lms/utils/courseLocalization';
 import { getLessonTreeById, normalizeLessonTree } from '@/modules/lms/utils/learningTree';
 
-export async function GET(request: NextRequest, { params }: { params: { lessonId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ lessonId: string }> | any }) {
   try {
-    const { lessonId } = params;
+    const { lessonId } = await params;
     await dbConnect();
     const lesson = await getLessonTreeById(lessonId);
 
