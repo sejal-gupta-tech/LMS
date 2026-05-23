@@ -70,6 +70,28 @@ const TopicSchema: Schema = new Schema({
   quizId: { type: Schema.Types.ObjectId, ref: 'Quiz' },
   content: { type: String },
   contentHtml: { type: String },
+  // New fields for rich interactive content
+  datasets: {
+    type: [
+      {
+        name: { type: String, default: '' },
+        url: { type: String, default: '' },
+        description: { type: String, default: '' },
+      },
+    ],
+    default: [],
+  },
+  playgroundId: { type: String, default: '' },
+  milestones: {
+    type: [
+      {
+        title: { type: String, default: '' },
+        description: { type: String, default: '' },
+        completed: { type: Boolean, default: false },
+      },
+    ],
+    default: [],
+  },
   order: { type: Number, default: 0 },
   quizzes: [{ type: Schema.Types.ObjectId, ref: 'Quiz' }]
 }, { timestamps: true });

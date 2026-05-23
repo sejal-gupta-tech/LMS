@@ -35,6 +35,12 @@ const LessonSchema: Schema = new Schema({
   order: { type: Number, default: 0 },
   unlockType: { type: String, enum: ['completion', 'time', 'none'], default: 'none' },
   unlockAfterDays: { type: Number, default: 0 },
+  quizzes: [{ type: Schema.Types.ObjectId, ref: 'Quiz' }],
+  notes: { markdown: { type: String, default: '' } },
+  datasets: [{ name: String, url: String }],
+  codingLab: { starterCode: { type: String, default: '' }, sandboxUrl: { type: String, default: '' } },
+  locked: { type: Boolean, default: false },
+  lockedAt: { type: Date },
   description: localizedTextField()
 }, { timestamps: true });
 

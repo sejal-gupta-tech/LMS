@@ -588,7 +588,8 @@ async function seed() {
 
     for (const data of topicsData) {
       console.log(`[SEED] Seeding details for topic slug: ${data.slug}`);
-      const topicDoc = await topicsColl.findOne({ course: course._id, lesson: lesson._id, slug: data.slug });
+      const baseSlug = data.slug.substring(0, data.slug.lastIndexOf('-'));
+      const topicDoc = await topicsColl.findOne({ course: course._id, lesson: lesson._id, slug: { $regex: new RegExp('^' + baseSlug) } });
       if (!topicDoc) {
         console.warn(`[SEED] Topic with slug ${data.slug} not found in DB. Skipping.`);
         continue;

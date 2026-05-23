@@ -60,6 +60,8 @@ const CourseSchema: Schema = new Schema({
   currency: { type: String, default: 'USD' },
   isPaid: { type: Boolean, default: false },
   accessType: { type: String, enum: ['free', 'subscription', 'one-time'], default: 'free' },
+  locked: { type: Boolean, default: false },
+  lockedAt: { type: Date },
   thumbnail: { type: String },
   category: { type: String, required: true },
   level: { type: String, enum: ['Beginner', 'Intermediate', 'Advanced'], default: 'Beginner' },

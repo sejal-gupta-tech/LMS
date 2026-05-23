@@ -21,7 +21,8 @@ import {
   Layers,
   CheckCircle,
   Loader2,
-  FileText
+  FileText,
+  Lock
 } from 'lucide-react';
 
 interface Course {
@@ -76,6 +77,8 @@ export default function CourseDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [expandedLessons, setExpandedLessons] = useState<string[]>([]);
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [enrolling, setEnrolling] = useState(false);
 
   const toggleLesson = (lessonId: string) => {
     setExpandedLessons(prev => 
@@ -128,12 +131,13 @@ export default function CourseDetailPage() {
           router.replace(getLocalePath(locale, `/courses/${resolvedCourse.slug}`));
         }
         
-        const [progressData, certData] = resolvedCourse?._id && userId
+        const [progressData, certData, enrollmentData] = resolvedCourse?._id && userId
           ? await Promise.all([
               readJsonResponse(await fetch(`/api/lms/progress?userId=${userId}&courseId=${resolvedCourse._id}`)),
-              readJsonResponse(await fetch(`/api/lms/certificates?userId=${userId}&courseId=${resolvedCourse._id}`))
+              readJsonResponse(await fetch(`/api/lms/certificates?userId=${userId}&courseId=${resolvedCourse._id}`)),
+              readJsonResponse(await fetch(`/api/lms/enrollments?userId=${userId}&courseId=${resolvedCourse._id}`))
             ])
-          : [null, null];
+          : [null, null, null];
 
         if ((progressData as any)?.success) {
           setCompletedLessons((unwrapApiData(progressData) || []).filter((p: any) => p.completed).map((p: any) => p.lessonId));
@@ -141,6 +145,10 @@ export default function CourseDetailPage() {
 
         if ((certData as any)?.success) {
           setCertificate(unwrapApiData(certData));
+        }
+
+        if ((enrollmentData as any)?.success && (enrollmentData as any)?.data) {
+          setIsEnrolled(true);
         }
       } catch (err: any) {
         console.error('Error fetching course detail:', { courseId: id, error: err });
@@ -173,6 +181,32 @@ export default function CourseDetailPage() {
       console.error('Error claiming certificate:', err);
     } finally {
       setClaimingCert(false);
+    }
+  };
+
+  const handleEnroll = async () => {
+    if (!userId) {
+      router.push(getLocalePath(locale, '/login'));
+      return;
+    }
+    if (!course) return;
+    setEnrolling(true);
+    try {
+      const res = await fetch('/api/lms/enrollments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, courseId: course._id })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsEnrolled(true);
+      } else {
+        alert(data.error || 'Failed to enroll');
+      }
+    } catch (err) {
+      console.error('Error enrolling:', err);
+    } finally {
+      setEnrolling(false);
     }
   };
 
@@ -226,20 +260,7 @@ export default function CourseDetailPage() {
                   {course.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-6 mt-6">
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-200">
-                    <User size={18} className="text-primary" />
-                    <span>Instructor ID: {course.instructorId}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-200">
-                    <Calendar size={18} className="text-primary" />
-                    <span>{t('courseDetailsStudentsLabel')}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-200">
-                    <Award size={18} className="text-primary" />
-                    <span>{t('courseDetailsCertificationIncluded')}</span>
-                  </div>
-                </div>
+                {/* Static data removed */}
               </div>
 
               {course.thumbnail ? (
@@ -302,12 +323,15 @@ export default function CourseDetailPage() {
                       >
                         {/* Section Header */}
                         <div 
-                          onClick={() => hasTopics && toggleLesson(lesson._id)}
-                          className={`flex items-center justify-between p-5 cursor-pointer hover:bg-slate-50 transition-colors ${isExpanded ? 'bg-slate-50 border-b' : ''}`}
+                          onClick={() => {
+                            if (!isEnrolled) return;
+                            if (hasTopics) toggleLesson(lesson._id);
+                          }}
+                          className={`flex items-center justify-between p-5 ${isEnrolled ? 'cursor-pointer hover:bg-slate-50' : 'cursor-not-allowed opacity-80'} transition-colors ${isExpanded ? 'bg-slate-50 border-b' : ''}`}
                         >
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-bold">
-                              {idx + 1}
+                              {!isEnrolled ? <Lock size={16} /> : idx + 1}
                             </div>
                             <div>
                               <h3 className="font-bold text-lg">{lesson.title}</h3>
@@ -321,7 +345,7 @@ export default function CourseDetailPage() {
                               {lesson.topics?.length ?? 0} topics
                             </span>
                             {hasTopics && (
-                              isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />
+                              isEnrolled ? (isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />) : <Lock size={16} className="text-slate-400" />
                             )}
                           </div>
                         </div>
@@ -413,12 +437,22 @@ export default function CourseDetailPage() {
                       <span className="text-muted-foreground line-through">$89.99</span>
                     </div>
                     
-                    <Link 
-                      href={lessons.length > 0 ? getLocalePath(locale, `/courses/${course.slug || id}/${lessons[0].slug || lessons[0]._id}`) : '#'}
-                      className="w-full h-14 bg-primary text-primary-foreground font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
-                    >
-                      {completedLessons.length > 0 ? t('continueLearning') : t('startLearningNow')}
-                    </Link>
+                    {!isEnrolled ? (
+                      <button 
+                        onClick={handleEnroll}
+                        disabled={enrolling}
+                        className="w-full h-14 bg-primary text-primary-foreground font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                      >
+                        {enrolling ? <Loader2 className="animate-spin" size={18} /> : 'Enroll Now'}
+                      </button>
+                    ) : (
+                      <Link 
+                        href={lessons.length > 0 ? getLocalePath(locale, `/courses/${course.slug || id}/${lessons[0].slug || lessons[0]._id}`) : '#'}
+                        className="w-full h-14 bg-primary text-primary-foreground font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                      >
+                        {completedLessons.length > 0 ? t('continueLearning') : t('startLearningNow')}
+                      </Link>
+                    )}
                   </>
                 )}
                 

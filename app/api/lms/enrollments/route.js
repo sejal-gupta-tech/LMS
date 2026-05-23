@@ -40,3 +40,23 @@ export async function POST(request) {
     );
   }
 }
+
+export async function GET(request) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get('userId');
+    const courseId = searchParams.get('courseId');
+
+    if (!userId || !courseId) {
+      return NextResponse.json({ success: false, error: 'Missing userId or courseId' }, { status: 400 });
+    }
+
+    const enrollment = await Enrollment.findOne({ userId, courseId });
+    return NextResponse.json({ success: true, data: enrollment });
+  } catch (error) {
+    console.error('Error fetching enrollment:', error);
+    return NextResponse.json({ success: false, error: 'Server Error' }, { status: 500 });
+  }
+}
+
